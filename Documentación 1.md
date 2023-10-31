@@ -51,7 +51,7 @@ En el primer apartado 'Requisitos y diagrama de casos de uso' para esta versión
 
 Es el momento de ser más concretos y detenernos a reflexionar en cada uno de los procesos que se realizarán para cada tarea, incluyendo los posibles errores cometidos por el usuario o el propio sistema.
 
-
+Descripción proyecto #1
 1. Registrar usuario
 Actores: Usuario no registrado.
 
