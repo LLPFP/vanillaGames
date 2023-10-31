@@ -85,3 +85,4 @@ Estas serían las historias a planificar en la entrega de la versión 1 de nuest
 Ahora que tenemos las historias definidas es el momento de planificar el trabajo. Para ello necesitamos una herramienta que nos permita gestionar y temporizar cada una de las tareas. Nosotros utilizaremos GitHub Projects.
 
 
+ 
