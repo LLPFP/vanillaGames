@@ -1,6 +1,5 @@
 # PLANIFICACIÓN DEL PROYECTO
 
-
 ## Planificación del proyecto
 
 ¡Estamos listos y hemos comenzado a desarrollar la versión 1.0 de nuestro proyecto!
@@ -13,20 +12,17 @@ Para poder planificar el trabajo, vamos a crear el 'backlog de proyecto', es dec
 
 ## Backlog de producto y de sprint
 
-
-
-
 Estas serían las historias a planificar en la entrega de la versión 1 de nuestro proyecto agrupadas por sprints:
 
 ### SPRINT 0: Definición del proyecto
 
-
 - **Historia**: Requisitos, casos de uso y diagrama de casos de uso
+
   - Como desarrollador, quiero definir de manera genérica las especificaciones de la aplicación.
 
 - **Historia**: Versiones y planificación
-  - Como desarrollador, quiero agrupar las especificaciones en versiones, definir las tareas necesarias y realizar la planificación de todo el proceso de desarrollo del proyecto.
 
+  - Como desarrollador, quiero agrupar las especificaciones en versiones, definir las tareas necesarias y realizar la planificación de todo el proceso de desarrollo del proyecto.
 
 - **Historia**: Casos de uso específicos y diagramas de flujo
   - Como desarrollador quiero definir las especificaciones y casos de uso para la versión 1.0.
@@ -44,117 +40,106 @@ Estas serían las historias a planificar en la entrega de la versión 1 de nuest
 
 **Historia**: Wireframes, Mockup y guía de estilos: Como diseñador quiero dibujar los mockups y crear la guía de estilos a partir de los colores, tipografías, etc seleccionadas.
 
-
 ### SPRINT 2: Prototipos
 
-
 - **Historia**: Entorno de desarrollo
+
   - Como diseñador/programador quiero instalar y configurar las herramientas necesarias para programar la aplicación, trabajar con repositorios y crear un entorno integración continua y despliegue continuo.
 
-
 - **Historia**: Prototipos html
+
   - Como maquetador web quiero crear las páginas html del proyecto a partir de los wireframes aplicando la guía de estilos y utilizando Bootstrap 5.
 
 - **Historia**: Validaciones de formularios
   - Como programador quiero definir e implementar las validaciones de los formularios del proyecto
 
-
-
 ### Sprint 3: Implementación de la SPA
 
-
 - **Historia**: Entorno de desarrollo basado en NodeJS
+
   - Como programador quiero instalar y configurar todas las herramientas necesarias (NodeJS, Vite, etc.) para el desarrollo de una app tipo SPA basada en Javascript
 
 - **Historia**: Creación de proyecto basado en SPA y organización de archivos para las vistas basadas en módulos js
+
   - Como programador quiero configurar el sistema de carpetas para las vistas y crear los archivos a partir de componentes html basados en los prototipos.
 
-
 - **Historia**: Creación de componentes
+
   - Como programador quiero crear los componentes para el encabezado, el enrutado de las páginas y los menús.
 
-
 - **Historia**: Diseño del aspecto de las vistas
+
   - Como usuario quiero poder navegar por todas las vistas de la aplicación (independientemente del del rol).
 
-
 - **Historia**: Implementación de la lógica para la validación de los formularios
+
   - Como usuario quiero recibir feedback de validación en las vistas con formularios.
 
 - **Historia**: Lógica para la autenticación de usuarios
+
   - Como usuario registrado quiero poder recordar los datos de sesión al loguearme (Uso de localStorage)
 
 - **Historia**: Actualización de componentes header y menús en función del rol de usuario logueado
+
   - Como usuario logueado quiero poder navegar por las vistas de la aplicación. (Podrán verse solo las opciones que corresponden a mi rol).
 
 - **Historia**: Diseño de las vistas a partir de los datos de un archivo JSON
-  - Como programador quiero simular el registro, login y visualización de las tablas de usuarios y proyectos a partir de datos ficticios obtenidos de una archivo json de prueba.
 
+  - Como programador quiero simular el registro, login y visualización de las tablas de usuarios y proyectos a partir de datos ficticios obtenidos de una archivo json de prueba.
 
 - **Historia**: Lógica para la administración de usuarios y proyectos (ver, editar, borrar, etc.)
   - Como administrador quiero poder gestionar los usuarios y proyectos (CRUD)
 
-
-
 ### Sprint 4: Backend
 
-
 - **Historia**: Diseño de la base de datos
+
   - Como programador quiero diseñar la base de datos en base a diagrama UML (diagrama entidad-relación)
 
-
 - **Historia**: Implementación de las tablas y funciones en supabase
+
   - Como programador quiero implementar las bases de datos en Supabase, diseñar las consultas e implementar las funciones postgree multitabla
 
-
 - **Historia**: API javascript de Supabase
-  - Como programador quiero probar las apis de javascript para el acceso a la base de datos
 
+  - Como programador quiero probar las apis de javascript para el acceso a la base de datos
 
 - **Historia**: Implementación de un ORM para mapping de la base de datos
   - Como programador quiero diseñar el diagrama de clases e implementarlo en javascript para tener un mapping de la bd.
 
-
-
-
 ### Sprint 5: Integración del frontend y el backend
 
-
 - **Historia**: Login y registro
+
   - Como usuario quiero poder registrarme e iniciar sesión.
 
-
 - **Historia**: Gestión de sesiones
+
   - Como usuario registrado quiero ver la web en base al rol que tengo asignado.
 
-
 - **Historia**: Editar perfil
+
   - Como usuario registrado quiero poder ver y modificar mi perfil.
 
-
 - **Historia**: Gestión de Proyectos (Vista proyectos, detalle proyecto, etc)
+
   - Como usuario registrado 'desarrollador' quiero poder ver los proyectos, ver mis proyectos, crear proyectos, ver detalle de los proyectos y editar y borrar mis proyectos.
 
 - **Historia**: Gestión de usuarios
   - Como usuario registrado 'administrador' quiero poder ver, editar y borrar los usuarios del sistema.
 
-
-
 ### Sprint 6: Revisión y despliegue en producción de la versión 1.0
 
 - **Historia**: Test de usuarios
+
   - Como diseñador quiero realizar tests de usuarios a un grupo de usuarios focales.
 
-
 - **Historia**: Revisión de la aplicación
+
   - Como programador quiero revisar y corregir los posibles problemas detectados en el test de usuarios.
 
 - **Historia**: Despliegue en producción
   - Como programador quiero despleguar la aplicación en producción.
-
-
-
-
 
 # Requisitos y diagrama de casos de uso
 
@@ -171,48 +156,44 @@ Lo primero es definir los casos de uso para esta versión. Una primera aproximac
 
 Casos de uso para la V1.0 - Definición básica
 
-+ Registrar usuario: Un usuario puede registrarse en la plataforma proporcionando su nombre, apellidos, email y contraseña.
+- Registrar usuario: Un usuario puede registrarse en la plataforma proporcionando su nombre, apellidos, email y contraseña.
 
-+ Recuperar contraseña: Un usuario registrado puede solicitar la recuperación de su contraseña en caso de que la haya olvidado. Para ello, se le enviará un correo electrónico con las instrucciones para restablecer su contraseña.
+- Recuperar contraseña: Un usuario registrado puede solicitar la recuperación de su contraseña en caso de que la haya olvidado. Para ello, se le enviará un correo electrónico con las instrucciones para restablecer su contraseña.
 
-+ Iniciar sesión: Un usuario registrado puede iniciar sesión en la plataforma proporcionando su email y contraseña.
+- Iniciar sesión: Un usuario registrado puede iniciar sesión en la plataforma proporcionando su email y contraseña.
 
-+ Cerrar sesión: Un usuario puede cerrar su sesión en la plataforma en cualquier momento.
+- Cerrar sesión: Un usuario puede cerrar su sesión en la plataforma en cualquier momento.
 
-+ Editar perfil: Un usuario registrado puede editar su perfil, actualizando su nombre, apellidos, email o contraseña.
+- Editar perfil: Un usuario registrado puede editar su perfil, actualizando su nombre, apellidos, email o contraseña.
 
-+ Ver proyectos: Un usuario registrado puede ver un listado de proyectos publicados por los desarrolladores.
+- Ver proyectos: Un usuario registrado puede ver un listado de proyectos publicados por los desarrolladores.
 
-+Publicar proyecto: Un usuario con el perfil de desarrollador puede publicar un proyecto proporcionando información como nombre, descripción, imagen representativa, enlaces a 
++Publicar proyecto: Un usuario con el perfil de desarrollador puede publicar un proyecto proporcionando información como nombre, descripción, imagen representativa, enlaces a
 servidor de pruebas y repositorio de código, estado del proyecto, etc.
 
-+ Editar proyecto: Un usuario con el perfil de desarrollador puede editar un proyecto que haya publicado previamente, actualizando la información del proyecto.
+- Editar proyecto: Un usuario con el perfil de desarrollador puede editar un proyecto que haya publicado previamente, actualizando la información del proyecto.
 
-+ Eliminar proyecto: Un usuario con el perfil de desarrollador puede eliminar un proyecto que haya publicado previamente.
+- Eliminar proyecto: Un usuario con el perfil de desarrollador puede eliminar un proyecto que haya publicado previamente.
 
-+ Ver/Editar usuarios: Un adminsrador puede ver una tabla con todos los usuarios que hay registrados y editar la información, incluido el ROL de usuario.
-Eliminar usuario: Un administrador puede eliminar cualquier usuario registrado en la plataforma.
-
+- Ver/Editar usuarios: Un adminsrador puede ver una tabla con todos los usuarios que hay registrados y editar la información, incluido el ROL de usuario.
+  Eliminar usuario: Un administrador puede eliminar cualquier usuario registrado en la plataforma.
 
 # Diagrma de casos de uso para la versión 1.0
 
 ![Diagrama de casos de uso](https://carrebola.github.io/vanillaPill/assets/images/diagramaCasosUso_1-3fc60e64208490df3bd2eb0f595cedbc.png)
 
-
 Este diagrama refleja de forma resumida qué acciones se pueden llevar a cabo en nuestro aplicación dependiendo del rol del usuario.
 
 Ahora que tenemos claro todo lo que debe hacer la versión 1.0, nuestra misión ahora es planificar el trabajo que se nos viene encima...
 
-
-
 # Casos de uso específicos y diagramas de flujo.
-
 
 En el primer apartado 'Requisitos y diagrama de casos de uso' para esta versión 1.0, hemos definido de manera general los casos de uso que se contemplan para cada actor y los hemos reflejado en un diagrama de casos de uso.
 
 Es el momento de ser más concretos y detenernos a reflexionar en cada uno de los procesos que se realizarán para cada tarea, incluyendo los posibles errores cometidos por el usuario o el propio sistema.
 
 ## Casos de uso específicos
+
 ### 1. Registrar usuario
 
 **Actores:** Usuario no registrado.
@@ -229,7 +210,7 @@ Es el momento de ser más concretos y detenernos a reflexionar en cada uno de lo
 
 **Flujos alternativos:**
 
--  El sistema detecta que el email ya está registrado: muestra un mensaje de error y no crea la cuenta.
+- El sistema detecta que el email ya está registrado: muestra un mensaje de error y no crea la cuenta.
 
 ### 2. Recuperar contraseña
 
@@ -245,8 +226,8 @@ Es el momento de ser más concretos y detenernos a reflexionar en cada uno de lo
 4. El sistema muestra un mensaje de confirmación de envio del mail para la recuperación de contraseña y redirige al usuario a la página de inicio.
 
 **Flujos alternativos:**
-- 3a. El sistema detecta que el email no está registrado: muestra un mensaje de error y no envia el mail.
 
+- 3a. El sistema detecta que el email no está registrado: muestra un mensaje de error y no envia el mail.
 
 ### 3. Iniciar sesión
 
@@ -264,7 +245,6 @@ Es el momento de ser más concretos y detenernos a reflexionar en cada uno de lo
 **Flujos alternativos:**
 
 - 3a. Las credenciales son incorrectas: el sistema muestra un mensaje de error y no crea la sesión.
-
 
 ### 4. Cerrar sesión
 
@@ -394,6 +374,7 @@ Es el momento de ser más concretos y detenernos a reflexionar en cada uno de lo
 5. El sistema muestra una confirmación de que la información de que el usuario ha sido borrado correctamente.
 
 ## Errores
+
 Vamos a repasar los diferentes casos de uso analizando el flujo principal y añadiendo los flujos alternativos para contemplar los posibles errores del sistema. Puedes considerar los siguientes mensajes:
 
 - **Error de conexión:** El servidor no puede establecer una conexión con la base de datos, lo que impide que se puedan realizar operaciones en la plataforma. El sistema debería mostrar un mensaje de error indicando que no se pudo conectar con la base de datos y ofrecer la posibilidad de volver a intentarlo o contactar con el soporte técnico.
@@ -406,7 +387,6 @@ Vamos a repasar los diferentes casos de uso analizando el flujo principal y aña
 
 - **Error de servidor:** En caso de que se produzca un error interno en el servidor, como una excepción no controlada, el sistema debería mostrar un mensaje de error genérico indicando que se produjo un error y ofrecer la posibilidad de volver a intentarlo o contactar con el soporte técnico.
 
-
 # Finalización del Sprint 0
 
 Llegados a este punto ya hemos acabado con todas las historias del primer Sprint.
@@ -417,9 +397,7 @@ Es por esto que, esta vez, no hemos podido ir desplazando las historias por los 
 
 ![image](https://carrebola.github.io/vanillaPill/assets/images/image-12-819c7b2abafcd82866b1f5be7f0f8985.png)
 
-
 Pero sí que es momento de reflexionar sobre el proceso realizado hasta ahora y la metodología empleada.
-
 
 # Hist3a - Diseño de la interfaz. Bocetos
 
@@ -437,7 +415,6 @@ Sin duda, el primer paso, debe ser dibujar los bocetos, así que, busca un lápi
 
 ![image](https://carrebola.github.io/vanillaPill/assets/images/1684861508218-79dad6473fd7d571d5f73e96f893af7f.jpg)
 
-
 Hemos didivido la interficie en 3 zonas, el encabezado (header), el cuerpo principal (main) y el pie de página (footer).
 
 - En el **header** vamos a alojar una barra superior fija con: el **logo** y nombre de la web (que hará las veces de link a la página principal), un **menú central genérico** (para acceder a páginas públicas), un **menú central específico** (que será diferente en función del rol de usuario logueado), y un icono (**avatar**) que permitirá ver la imagen del usuario logueado y que hará de botón para desplegar otro menú, el **menú de usuario** (que tendrá diferentes items dependiendo de si la sesió está abierta o no y del tipo de rol que tenga el usuario logueado).
@@ -446,23 +423,19 @@ Hemos didivido la interficie en 3 zonas, el encabezado (header), el cuerpo princ
 
 - El **header** será meramente informativo.
 
-
 # Regitro de un usuario
 
 ![image](https://carrebola.github.io/vanillaPill/assets/images/1684861508212-88f1ed0a8c53df9f791872b3b03519d8.jpg)
 
->
 >
 
 # Iniciar sesión
 
 ![image](https://carrebola.github.io/vanillaPill/assets/images/1684861508205-edba4a097ae58ec58f1bb07dc4b7e5e1.jpg)
 
-
 # Editar mi perfil
 
 ![image](https://carrebola.github.io/vanillaPill/assets/images/1684861508198-5b5eff368d5421682a834f3ed67af5bd.jpg)
-
 
 Editar perfil será una ventana modal, es decir, se mostrará la ventana y el fondo se volverá oscuro.
 
@@ -488,16 +461,11 @@ En esta pestaña podemos ver los trabajos pertenecientes al usuario logueado. En
 
 Habría que valorar si es mejor crear un único buscador para el nombre y descripción del proyecto o dos barras de busqueda, una para cada sección, tal y como se muestra en el boceto anterior.
 
-
-
 # Detalle de un proyecto
 
 ![image](https://carrebola.github.io/vanillaPill/assets/images/1684861508178-ed1f5e41681a1dcee1edac19f807c239.jpg)
 
 Si el usuario que está viendo la información de un proyecto en concreto es el autor de dicho proyecto, aparecerá un icono para la edición del mismo.
-
-
-
 
 # Nuevo proyecto / Editar un proyecto
 
@@ -507,17 +475,13 @@ Esta vista sirve tanto para crear un nuevo proyecto como para editarlo.
 
 Si el proyecto es nuevo, el botón mostrará el texto ENVIAR, pero si estamos editándolo aparecerá el texto ACTUALIZAR. Al crear o actualizar el proyecto, la web nos reenvía a la vista 'Detalle de proyecto'.
 
-
-
 # Panel administración de proyectos
 
 ![image](https://carrebola.github.io/vanillaPill/assets/images/1684861508161-c9cfd413730d67ea74b43e48fedea5ec.jpg)
 
-Si tienes el rol '**administrador**' aparecerá el item '*Panel administración*' en el **menú superior específico**. Este item nos permite cargar la vista '**Panel administración de proyectos**'. Desde esta vista también podemos acceder al 'Panel administración de usuarios'.
+Si tienes el rol '**administrador**' aparecerá el item '_Panel administración_' en el **menú superior específico**. Este item nos permite cargar la vista '**Panel administración de proyectos**'. Desde esta vista también podemos acceder al 'Panel administración de usuarios'.
 
 Esta vista permite **editar o borrar cualquier proyecto** haciendo click en los iconos correspondientes. La opción editar nos llevará a la vista 'Editar proyecto'
-
-
 
 # Panel administración de usuarios
 
