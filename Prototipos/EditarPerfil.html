@@ -125,7 +125,7 @@
         aria-hidden="true"
       >
         <!-- Formulario de edición de perfil -->
-        <form action="">
+        <form class="needs-validation" novalidate>
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -163,7 +163,11 @@
                         type="url"
                         class="form-control"
                         value="http://imagenavatar.png"
+                        pattern="https?://.+"
                       />
+                      <div class="invalid-feedback">
+                        Por favor, introduce una URL válida.
+                      </div>
                     </div>
 
                     <div class="">
@@ -175,12 +179,18 @@
                         type="text"
                         class="form-control"
                       />
+                      <div class="invalid-feedback">
+                        Por favor, introduce tu nombre.
+                      </div>
 
                       <!-- Apellidos -->
                       <label for="apellidos" class="form-label"
                         >Apellidos:</label
                       >
                       <input id="apellidos" type="text" class="form-control" />
+                      <div class="invalid-feedback">
+                        Por favor, introduce tus apellidos.
+                      </div>
 
                       <!-- Email -->
                       <label for="email" class="form-label">Email:</label>
@@ -190,6 +200,9 @@
                         type="email"
                         class="form-control"
                       />
+                      <div class="invalid-feedback">
+                        Por favor, introduce un email válido.
+                      </div>
 
                       <!-- Contraseña -->
                       <label for="pass" class="form-label mt-3"
@@ -202,6 +215,9 @@
                         minlength="6"
                         class="form-control"
                       />
+                      <div class="invalid-feedback">
+                        La contraseña debe tener al menos 6 caracteres.
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -263,5 +279,25 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
+    <script>
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll(".needs-validation");
+
+      // Loop over them and prevent submission
+      Array.from(forms).forEach((form) => {
+        form.addEventListener(
+          "submit",
+          (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    </script>
   </body>
 </html>

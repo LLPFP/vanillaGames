@@ -1,38 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
     />
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/yeti/bootstrap.min.css"
     />
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="styles.css" />
-
-    <link rel="stylesheet" href="styles.css" />
     <title>Prototipos vanilla games</title>
-
     <style>
-      /* Modificamos aspecto de nav-tabs y nav-links */
       .nav-tabs,
       .nav-link.active {
         border-bottom: 0;
-        /* background-color: red; */
       }
     </style>
   </head>
@@ -40,17 +27,16 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="#"
-            ><img
+          <a class="navbar-brand" href="#">
+            <img
               src="./images/logo.svg"
               alt=""
               width="30"
               height="24"
               class="d-inline-block align-text-top"
             />
-
-            Vanilla Games</a
-          >
+            Vanilla Games
+          </a>
           <button
             class="navbar-toggler"
             type="button"
@@ -111,10 +97,10 @@
         </div>
       </nav>
     </header>
+
     <main>
       <div class="container-fluid">
         <h1 class="mt-5">Panel de administración</h1>
-        <!-- tabs -->
         <div class="row mt-5">
           <div class="col-12">
             <ul class="nav nav-tabs">
@@ -130,9 +116,7 @@
           </div>
         </div>
 
-        <!-- tabla proyectos -->
         <div class="border border-top-0 p-3">
-          <!-- buscador -->
           <div class="row">
             <div class="d-flex col-12 col-md-6 mb-3">
               <div class="input-group flex-nowrap">
@@ -153,49 +137,35 @@
             </div>
           </div>
 
-          <!-- tabla usuarios-->
           <div class="col-12" style="overflow-x: auto">
-            <table
-              class="table table-hover align-middle mt-3"
-              style="min-width: 1200px"
-            >
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>
-                    URL imagen <span><i class="bi bi-caret-down"></i></span>
-                  </th>
-                  <th>
-                    Email <span><i class="bi bi-caret-down"></i></span>
-                  </th>
-                  <th>
-                    Nombre <span><i class="bi bi-caret-up"></i></span>
-                  </th>
-                  <th>
-                    Apellidos <span><i class="bi bi-caret-up"></i></span>
-                  </th>
-                  <th>
-                    Fecha <span><i class="bi bi-caret-up"></i></span>
-                  </th>
-                  <th>
-                    Rol <span><i class="bi bi-caret-up"></i></span>
-                  </th>
-                  <th>
-                    Estado <span><i class="bi bi-caret-up"></i></span>
-                  </th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
+            <form class="needs-validation" novalidate action="">
+              <table
+                class="table table-hover align-middle mt-3"
+                style="min-width: 1200px"
+              >
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>URL imagen</th>
+                    <th>Email</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Fecha</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
 
-              <tr>
-                <form action="">
+                <tr>
                   <td>
                     <div class="containerImagen">
                       <div
                         class="rounded-circle d-flex align-items-end justify-content-end"
                         style="
                           background-image: url(.images/avatar.svg);
+                          margin-top: -20px;
                           width: 50px;
                           height: 50px;
                           background-size: cover;
@@ -214,25 +184,31 @@
                       id="url"
                       class="form-control form-control-sm"
                       value="http://imagen.com"
+                      required
                     />
+                    <div class="invalid-feedback">La URL debe ser válida.</div>
                   </td>
                   <td>
                     <input
-                      required
                       type="email"
                       id="email"
                       class="form-control form-control-sm"
                       value="email@email.com"
+                      required
                     />
+                    <div class="invalid-feedback">
+                      Por favor ingresa un correo válido.
+                    </div>
                   </td>
                   <td>
                     <input
-                      required
                       type="text"
                       id="nombre"
                       class="form-control form-control-sm"
                       value="Nombre usuario"
+                      required
                     />
+                    <div class="invalid-feedback">El nombre es requerido.</div>
                   </td>
                   <td>
                     <input
@@ -241,193 +217,66 @@
                       class="form-control form-control-sm"
                       value="Apellidos usuario"
                     />
+                    <div class="invalid-feedback">
+                      Los apellidos son requeridos.
+                    </div>
                   </td>
 
                   <td>
                     <input
                       type="date"
                       class="form-control form-control-sm"
-                      value="12/12/2023 proyecto"
+                      value="2023-12-12"
+                      required
                     />
+                    <div class="invalid-feedback">La fecha es requerida.</div>
                   </td>
                   <td>
-                    <select class="form-control form-control-sm" name="" id="">
+                    <select
+                      class="form-control form-control-sm"
+                      name="rol"
+                      id="rol"
+                      required
+                    >
+                      <option value="">Selecciona una opción</option>
                       <option value="1">opción</option>
                       <option value="2">opción2</option>
                     </select>
-                  </td>
-                  <td>
-                    <select class="form-control form-control-sm" name="" id="">
-                      <option value="1">opción</option>
-                      <option value="2">opción2</option>
-                    </select>
-                  </td>
-                  <td>
-                    <button class="btn btn-sm btn-success">Actualizar</button>
-                  </td>
-                  <td>
-                    <i class="btn btn-sm btn-outline-danger bi bi-trash3"></i>
-                  </td>
-              </tr>
-
-              <tr>
-                <form action="">
-                  <td>
-                    <div class="containerImagen">
-                      <div
-                        class="rounded-circle d-flex align-items-end justify-content-end"
-                        style="
-                          background-image: url(.images/avatar.svg);
-                          width: 50px;
-                          height: 50px;
-                          background-size: cover;
-                          background-position: center;
-                        "
-                      >
-                        <i
-                          class="btn btn-success btn-sm rounded-circle bi bi-pencil"
-                        ></i>
-                      </div>
+                    <div class="invalid-feedback">
+                      Por favor selecciona un rol.
                     </div>
                   </td>
                   <td>
-                    <input
-                      type="text"
+                    <select
                       class="form-control form-control-sm"
-                      value="http://imagen.com"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      value="email@email.com"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      value="Nombre usuario"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      value="Apellidos usuario"
-                    />
-                  </td>
-
-                  <td>
-                    <input
-                      type="date"
-                      class="form-control form-control-sm"
-                      value="12/12/2023 proyecto"
-                    />
-                  </td>
-                  <td>
-                    <select class="form-control form-control-sm" name="" id="">
+                      name="estado"
+                      id="estado"
+                      required
+                    >
+                      <option value="">Selecciona un estado</option>
                       <option value="1">opción</option>
                       <option value="2">opción2</option>
                     </select>
-                  </td>
-                  <td>
-                    <select class="form-control form-control-sm" name="" id="">
-                      <option value="1">opción</option>
-                      <option value="2">opción2</option>
-                    </select>
-                  </td>
-                  <td>
-                    <button class="btn btn-sm btn-success">Actualizar</button>
-                  </td>
-                  <td>
-                    <i class="btn btn-sm btn-outline-danger bi bi-trash3"></i>
-                  </td>
-                </form>
-              </tr>
-
-              <tr>
-                <form action="">
-                  <td>
-                    <div class="containerImagen">
-                      <div
-                        class="rounded-circle d-flex align-items-end justify-content-end"
-                        style="
-                          background-image: url(.images/avatar.svg);
-                          width: 50px;
-                          height: 50px;
-                          background-size: cover;
-                          background-position: center;
-                        "
-                      >
-                        <i
-                          class="btn btn-success btn-sm rounded-circle bi bi-pencil"
-                        ></i>
-                      </div>
+                    <div class="invalid-feedback pt-2">
+                      Por favor selecciona un estado.
                     </div>
                   </td>
                   <td>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      value="http://imagen.com"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      value="email@email.com"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      value="Nombre usuario"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      value="Apellidos usuario"
-                    />
-                  </td>
-
-                  <td>
-                    <input
-                      type="date"
-                      class="form-control form-control-sm"
-                      value="12/12/2023 proyecto"
-                    />
-                  </td>
-                  <td>
-                    <select class="form-control form-control-sm" name="" id="">
-                      <option value="1">opción</option>
-                      <option value="2">opción2</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="form-control form-control-sm" name="" id="">
-                      <option value="1">opción</option>
-                      <option value="2">opción2</option>
-                    </select>
-                  </td>
-                  <td>
-                    <button class="btn btn-sm btn-success">Actualizar</button>
+                    <button type="submit" class="btn btn-sm btn-success">
+                      Actualizar
+                    </button>
                   </td>
                   <td>
                     <i class="btn btn-sm btn-outline-danger bi bi-trash3"></i>
                   </td>
-                </form>
-              </tr>
-            </table>
+                </tr>
+              </table>
+            </form>
           </div>
         </div>
       </div>
     </main>
+
     <footer class="">
       <nav class="navbar bg-secondary fixed-bottom small">
         <div class="container">
@@ -447,11 +296,20 @@
       </nav>
     </footer>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Script para la validación del formulario
+      const formulario = document.querySelector("form");
+
+      formulario.addEventListener("submit", (event) => {
+        if (!formulario.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        formulario.classList.add("was-validated");
+      });
+    </script>
   </body>
 </html>
