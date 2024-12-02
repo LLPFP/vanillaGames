@@ -131,6 +131,7 @@
                 ><strong>Nombre: </strong></label
               >
               <input
+                required
                 id="nombre"
                 type="text"
                 value="Nombre Autor"
@@ -146,7 +147,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, sunt? Recu
               <label class="form-label mt-2" for="estado"
                 ><strong>Estado: </strong></label
               >
-              <select id="estado" class="form-control">
+              <select required id="estado" class="form-control">
                 <option value="estado">estado</option>
                 <option value="otro estado">otro estado</option>
               </select>
@@ -163,8 +164,9 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, sunt? Recu
                 ><strong>Enlace: </strong></label
               >
               <input
+                required
                 id="enlace"
-                type="text"
+                type="url"
                 class="form-control"
                 value="http://enlace.com"
               />
@@ -172,8 +174,9 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, sunt? Recu
                 ><strong>Repositorio: </strong></label
               >
               <input
+                required
                 id="repositorio"
-                type="text"
+                type="url"
                 class="form-control"
                 value="user.github.com/123456"
               />
