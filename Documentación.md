@@ -3161,3 +3161,964 @@ Aquí puedes ver el código utilizado: 👁‍🗨 ...
     </body>
 
 </html>
+
+## Validaciones Bootstrap
+
+### Validaciones Formularios
+
+- Formularios con atributo `novalidate`
+- Clase `was-validated` para validación dinámica
+
+### Clases Utilizadas
+
+- `form-control`: Inputs y textareas
+- `form-select`: Selects
+- `valid-feedback`: Mensajes éxito
+- `invalid-feedback`: Mensajes error
+
+### Atributos Validación
+
+- `required`
+- `minlength`, `maxlength`
+- `min`, `max`
+- `type="email"`
+- `type="number"`
+- `type="date"`
+- `type="tel"`
+- `type="url"`
+- `type="password"`
+- `pattern`
+
+## Iniciar Sesión
+
+      <main>
+      <div class="container">
+        <h1 class="mt-5 text-center">Inicia sesión</h1>
+        <div class="m-5 mx-auto" style="max-width: 400px">
+          <form class="form border shadow-sm p-3 needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input required id="email" type="email" class="form-control" />
+              <div class="invalid-feedback">
+                Por favor, introduce un email válido.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="pass" class="form-label">Contraseña:</label>
+              <input
+                required
+                id="pass"
+                type="password"
+                minlength="6"
+                class="form-control"
+              />
+              <div class="invalid-feedback">
+                La contraseña debe tener al menos 6 caracteres.
+              </div>
+            </div>
+            <div class="form-check mt-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckChecked"
+                checked
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Recordar sesión
+              </label>
+            </div>
+            <a class="d-block text-end" href="#"
+              >¿Has olvidado tu contraseña?</a
+            >
+            <button type="submit" class="btn btn-primary w-100 mt-3">
+              Iniciar sesión
+            </button>
+          </form>
+          <a class="d-block mt-5 btn btn-secondary mx-auto" href="#"
+            >¿Eres nuevo? Regístrate</a
+          >
+        </div>
+      </div>
+    </main>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Script para la validación del formulario
+
+      //Capturamos el formulario en una variable
+      const formulario = document.querySelector("form");
+
+      //Detectamos su evento submit (enviar)
+      formulario.addEventListener("submit", (event) => {
+        //Comprobamos si el formulario no valida
+        if (!formulario.checkValidity()) {
+          //Detenemos el evento enviar (submit)
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        //Y añadimos la clase 'was-validate' para que se muestren los mensajes
+        formulario.classList.add("was-validated");
+      });
+    </script>
+
+## Registro
+
+    <main>
+      <div class="container">
+        <h1 class="mt-5 text-center">Registro</h1>
+        <div class="m-5 mx-auto" style="max-width: 400px">
+          <form
+            action="Home.html"
+            class="form border shadow-sm p-3 needs-validation"
+            novalidate
+          >
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre:</label>
+              <input required id="nombre" type="text" class="form-control" />
+              <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+            </div>
+            <div class="mb-3">
+              <label for="apellidos" class="form-label">Apellidos:</label>
+              <input id="apellidos" type="text" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input required id="email" type="email" class="form-control" />
+              <div class="invalid-feedback">
+                Por favor, ingrese un email válido.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="pass" class="form-label">Contraseña:</label>
+              <input
+                required
+                id="pass"
+                type="password"
+                minlength="6"
+                class="form-control"
+              />
+              <div class="invalid-feedback">
+                La contraseña debe tener al menos 6 caracteres.
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
+
+## Editar Perfil
+
+  <body class="pt-5" style="overflow-x: hidden; padding-bottom: 100px">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#"
+            ><img
+              src="./images/logo.svg"
+              alt=""
+              width="30"
+              height="24"
+              class="d-inline-block align-text-top"
+            />
+
+            Vanilla Games</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Menú general -->
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#"
+                  >TOP5 Proyectos</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">A cerca de</a>
+              </li>
+            </ul>
+            <!-- Menú ROL -->
+            <ul class="navbar-nav ms-auto me-2 mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"
+                  >PROYECTOS</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img src=".images/avatar.svg" alt="" width="25" />
+                </a>
+                <!-- Menú usuario -->
+                <ul
+                  class="dropdown-menu me-0"
+                  style="left: -100px; width: 100px"
+                >
+                  <li class="text-light text-center p-2">
+                    <p>user@email.com</p>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <button
+                      type="button"
+                      class="dropdown-item"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      Editar perfil
+                    </button>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Otra acción</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- VEntana edición perfil -->
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <!-- Formulario de edición de perfil -->
+        <form class="needs-validation" novalidate>
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Edición de perfil
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="form border shadow-sm p-3">
+                  <div class="m-1" style="max-width: 400px">
+                    <div class="imgPerfil border shadow-sm p-3 mb-3">
+                      <div
+                        class="imagen mx-auto mb-1 rounded-circle"
+                        style="
+                          background-image: url(.images/avatar.svg);
+                          width: 200px;
+                          height: 200px;
+                          background-size: cover;
+                          background-position: center;
+                        "
+                      ></div>
+
+                      <!-- Imagen de perfil -->
+                      <label for="imagen" class="form-label mt-3"
+                        >URL imagen:</label
+                      >
+                      <input
+                        id="imagen"
+                        type="url"
+                        class="form-control"
+                        value="http://imagenavatar.png"
+                        pattern="https?://.+"
+                      />
+                      <div class="invalid-feedback">
+                        Por favor, introduce una URL válida.
+                      </div>
+                    </div>
+
+                    <div class="">
+                      <!-- Nombre -->
+                      <label for="nombre" class="form-label">Nombre:</label>
+                      <input
+                        required
+                        id="nombre"
+                        type="text"
+                        class="form-control"
+                      />
+                      <div class="invalid-feedback">
+                        Por favor, introduce tu nombre.
+                      </div>
+
+                      <!-- Apellidos -->
+                      <label for="apellidos" class="form-label"
+                        >Apellidos:</label
+                      >
+                      <input id="apellidos" type="text" class="form-control" />
+                      <div class="invalid-feedback">
+                        Por favor, introduce tus apellidos.
+                      </div>
+
+                      <!-- Email -->
+                      <label for="email" class="form-label">Email:</label>
+                      <input
+                        required
+                        id="email"
+                        type="email"
+                        class="form-control"
+                      />
+                      <div class="invalid-feedback">
+                        Por favor, introduce un email válido.
+                      </div>
+
+                      <!-- Contraseña -->
+                      <label for="pass" class="form-label mt-3"
+                        >Contraseña:</label
+                      >
+                      <input
+                        required
+                        id="pass"
+                        type="password"
+                        minlength="6"
+                        class="form-control"
+                      />
+                      <div class="invalid-feedback">
+                        La contraseña debe tener al menos 6 caracteres.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Guardar cambios
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <h1 class="mt-5">Modal para editar perfil en header</h1>
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Launch demo modal
+        </button>
+      </div>
+    </main>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll(".needs-validation");
+
+      // Loop over them and prevent submission
+      Array.from(forms).forEach((form) => {
+        form.addEventListener(
+          "submit",
+          (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    </script>
+
+## Admin Usuarios
+
+    <main>
+      <div class="container-fluid">
+        <h1 class="mt-5">Panel de administración</h1>
+        <div class="row mt-5">
+          <div class="col-12">
+            <ul class="nav nav-tabs">
+              <li class="nav-item w-50">
+                <a class="nav-link active" aria-current="page" href="#"
+                  >Usuarios</a
+                >
+              </li>
+              <li class="nav-item w-50">
+                <a class="nav-link" href="#">Proyectos</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border border-top-0 p-3">
+          <div class="row">
+            <div class="d-flex col-12 col-md-6 mb-3">
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping"
+                  ><i class="bi bi-search"></i
+                ></span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Buscador"
+                  aria-label="Username"
+                  aria-describedby="addon-wrapping"
+                />
+                <span class="input-group-text" id="addon-wrapping"
+                  ><i class="bi bi-x"></i
+                ></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12" style="overflow-x: auto">
+            <form class="needs-validation" novalidate action="">
+              <table
+                class="table table-hover align-middle mt-3"
+                style="min-width: 1200px"
+              >
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>URL imagen</th>
+                    <th>Email</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Fecha</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tr>
+                  <td>
+                    <div class="containerImagen">
+                      <div
+                        class="rounded-circle d-flex align-items-end justify-content-end"
+                        style="
+                          background-image: url(.images/avatar.svg);
+                          margin-top: -20px;
+                          width: 50px;
+                          height: 50px;
+                          background-size: cover;
+                          background-position: center;
+                        "
+                      >
+                        <i
+                          class="btn btn-success btn-sm rounded-circle bi bi-pencil"
+                        ></i>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="url"
+                      id="url"
+                      class="form-control form-control-sm"
+                      value="http://imagen.com"
+                      required
+                    />
+                    <div class="invalid-feedback">La URL debe ser válida.</div>
+                  </td>
+                  <td>
+                    <input
+                      type="email"
+                      id="email"
+                      class="form-control form-control-sm"
+                      value="email@email.com"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Por favor ingresa un correo válido.
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="nombre"
+                      class="form-control form-control-sm"
+                      value="Nombre usuario"
+                      required
+                    />
+                    <div class="invalid-feedback">El nombre es requerido.</div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="apellidos"
+                      class="form-control form-control-sm"
+                      value="Apellidos usuario"
+                    />
+                    <div class="invalid-feedback">
+                      Los apellidos son requeridos.
+                    </div>
+                  </td>
+
+                  <td>
+                    <input
+                      type="date"
+                      class="form-control form-control-sm"
+                      value="2023-12-12"
+                      required
+                    />
+                    <div class="invalid-feedback">La fecha es requerida.</div>
+                  </td>
+                  <td>
+                    <select
+                      class="form-control form-control-sm"
+                      name="rol"
+                      id="rol"
+                      required
+                    >
+                      <option value="">Selecciona una opción</option>
+                      <option value="1">opción</option>
+                      <option value="2">opción2</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Por favor selecciona un rol.
+                    </div>
+                  </td>
+                  <td>
+                    <select
+                      class="form-control form-control-sm"
+                      name="estado"
+                      id="estado"
+                      required
+                    >
+                      <option value="">Selecciona un estado</option>
+                      <option value="1">opción</option>
+                      <option value="2">opción2</option>
+                    </select>
+                    <div class="invalid-feedback pt-2">
+                      Por favor selecciona un estado.
+                    </div>
+                  </td>
+                  <td>
+                    <button type="submit" class="btn btn-sm btn-success">
+                      Actualizar
+                    </button>
+                  </td>
+                  <td>
+                    <i class="btn btn-sm btn-outline-danger bi bi-trash3"></i>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Script para la validación del formulario
+      const formulario = document.querySelector("form");
+
+      formulario.addEventListener("submit", (event) => {
+        if (!formulario.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        formulario.classList.add("was-validated");
+      });
+    </script>
+
+  </body>
+</html>
+
+## Nuevo Proyecto
+
+    <main>
+      <div class="container">
+        <h1 class="mt-5">Nuevo proyecto</h1>
+        <div class="d-flex justify-content-end">
+          <bottom class="btn btn-outline-secondary mt-5">
+            <i class="bi bi-arrow-bar-left" style="font-size: 1em"></i>
+            Volver</bottom
+          >
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12 col-md-4 pt-2 mb-3">
+            <img src="./images/logo.svg" alt="" class="img-fluid" />
+          </div>
+          <div class="col-12 col-md-8">
+            <form action="" class="form needs-validation" novalidate>
+              <div class="mb-3">
+                <label class="form-label" for="nombre"
+                  ><strong>Nombre: </strong></label
+                >
+                <input
+                  required
+                  id="nombre"
+                  type="text"
+                  value="Nombre Autor"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Por favor, introduce un nombre válido.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="descripcion"
+                  ><strong>Descripción: </strong></label
+                >
+                <textarea
+                  id="descripcion"
+                  class="form-control"
+                  rows="4"
+                  required
+                >
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, sunt? Recusandae labore at voluptatem tempore incidunt distinctio eaque? Est aspernatur laudantium itaque ullam numquam autem dolor quia amet eum consectetur.</textarea
+                >
+
+<div class="invalid-feedback">
+Por favor, introduce una descripción.
+</div>
+</div>
+
+              <div class="mb-3">
+                <label class="form-label" for="estado"
+                  ><strong>Estado: </strong></label
+                >
+                <select required id="estado" class="form-select">
+                  <option value="">Selecciona un estado</option>
+                  <option value="estado">estado</option>
+                  <option value="otro estado">otro estado</option>
+                </select>
+                <div class="invalid-feedback">
+                  Por favor, selecciona un estado.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="fecha"
+                  ><strong>Fecha: </strong></label
+                >
+                <input
+                  id="fecha"
+                  type="date"
+                  class="form-control"
+                  value="12/12/2023"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Por favor, selecciona una fecha válida.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="enlace"
+                  ><strong>Enlace: </strong></label
+                >
+                <input
+                  required
+                  id="enlace"
+                  type="url"
+                  class="form-control"
+                  value="http://enlace.com"
+                />
+                <div class="invalid-feedback">
+                  Por favor, introduce una URL válida.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="repositorio"
+                  ><strong>Repositorio: </strong></label
+                >
+                <input
+                  required
+                  id="repositorio"
+                  type="url"
+                  class="form-control"
+                  value="user.github.com/123456"
+                />
+                <div class="invalid-feedback">
+                  Por favor, introduce una URL de repositorio válida.
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-success mt-3">
+                Subir proyecto
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (() => {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
+
+## Editar Proyecto
+
+    <main>
+      <div class="container">
+        <h1 class="mt-5">Edición de proyecto</h1>
+        <div class="d-flex justify-content-end">
+          <bottom class="btn btn-outline-secondary mt-5">
+            <i class="bi bi-arrow-bar-left" style="font-size: 1em"></i>
+            Volver</bottom
+          >
+        </div>
+        <form action="" class="needs-validation" novalidate>
+          <div class="row mt-2">
+            <div class="col-12 col-md-4 pt-2 mb-3">
+              <img src=".images/juego.jpg" alt="" class="img-fluid" />
+              <label class="form-label mt-2" for="urlImagen"
+                ><strong>URL imagen: </strong></label
+              >
+              <input
+                id="urlImagen"
+                type="url"
+                class="form-control"
+                value="http://enlaceImagen.com"
+                required
+              />
+              <div class="invalid-feedback">
+                Por favor, introduce una URL válida para la imagen
+              </div>
+            </div>
+            <div class="col-12 col-md-8">
+              <!-- Formulario nuevo proyecto -->
+
+              <!-- Nombre proyecto -->
+              <label class="form-label" for="nombre"
+                ><strong>Nombre: </strong></label
+              >
+              <input
+                required
+                id="nombre"
+                type="text"
+                value="Nombre Autor"
+                class="form-control"
+              />
+              <div class="invalid-feedback">
+                Por favor, introduce un nombre para el proyecto
+              </div>
+
+              <!-- Descripción -->
+              <label class="form-label mt-2" for="descripcion"
+                ><strong>Descripción: </strong></label
+              >
+              <textarea id="descripcion" class="form-control" rows="4" required>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, sunt? Recusandae labore at voluptatem tempore incidunt distinctio eaque? Est aspernatur laudantium itaque ullam numquam autem dolor quia amet eum consectetur.</textarea
+              >
+              <div class="invalid-feedback">
+                Por favor, añade una descripción del proyecto
+              </div>
+
+              <!-- Estado -->
+              <label class="form-label mt-2" for="estado"
+                ><strong>Estado: </strong></label
+              >
+              <select required id="estado" class="form-control">
+                <option value="">Selecciona un estado</option>
+                <option value="estado">estado</option>
+                <option value="otro estado">otro estado</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor, selecciona un estado para el proyecto
+              </div>
+
+              <!-- Fecha -->
+              <label class="form-label mt-2" for="fecha"
+                ><strong>Fecha: </strong></label
+              >
+              <input
+                id="fecha"
+                type="date"
+                class="form-control"
+                value="12/12/2023"
+                required
+              />
+              <div class="invalid-feedback">
+                Por favor, selecciona una fecha
+              </div>
+
+              <!-- Enlace al proyecto -->
+              <label class="form-label mt-2" for="enlace"
+                ><strong>Enlace: </strong></label
+              >
+              <input
+                id="enlace"
+                type="url"
+                class="form-control"
+                value="http://enlace.com"
+                required
+              />
+              <div class="invalid-feedback">
+                Por favor, introduce una URL válida para el proyecto
+              </div>
+
+              <!-- Repositorio -->
+              <label class="form-label mt-2" for="repositorio"
+                ><strong>Repositorio: </strong></label
+              >
+              <input
+                id="repositorio"
+                type="url"
+                class="form-control"
+                value="user.github.com/123456"
+                required
+              />
+              <div class="invalid-feedback">
+                Por favor, introduce una URL válida para el repositorio
+              </div>
+
+              <!-- Submit -->
+              <input
+                type="submit"
+                class="btn btn-success mt-3"
+                value="Subir proyecto"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (() => {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
+
+Se ha dejado solo el código imprescindible para entender el funcionamiento de la validación bootstrap
