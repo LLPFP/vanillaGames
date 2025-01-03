@@ -1,6 +1,4 @@
 import "./scss/styles.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./scss/styles.scss";
 
 import { header } from "./componentes/Header";
 import { footer } from "./componentes/Footer";
