@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r https://github.com/LLPFP/vanillaGames.git"
   },
   "devDependencies": {
     "gh-pages": "^6.2.0",
