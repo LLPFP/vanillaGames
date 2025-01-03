@@ -4,7 +4,7 @@ import { header } from "./componentes/Header";
 import { footer } from "./componentes/Footer";
 // Importamos la vista por defecto (que será home)
 async function cargarVista() {
-  const componente = await import("./vistas/adminUsuariosVista");
+  const componente = await import("./vistas/proyectosVista");
   const vista = componente.default; // Inyectamos la vista home
   document.querySelector("main").innerHTML = vista.template;
   //Ejectuamos el script de la vista
