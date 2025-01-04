@@ -4493,5 +4493,5 @@ Integración completa del desarrollo de vistas HTML y componentes base en la ram
 
 #### Merge
 
-Rama origen: vistasHtml
-Rama destino: main
+- Rama origen: vistasHtml
+- Rama destino: main
