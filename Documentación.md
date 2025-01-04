@@ -4036,21 +4036,21 @@ Por favor, introduce una descripción.
 
 Se ha dejado solo el código imprescindible para entender el funcionamiento de la validación bootstrap
 
-# Entorno de desarrollo
+# Entorno de desarrollo 🚀
 
-Para crear un proyecto con Vite, ESLint y Sass, seguimos los siguientes pasos:
+Creamos un proyecto con Vite, ESLint y Sass, siguiendo los siguientes pasos:
 
-1. Instalar Node.js y npm:
+## 1. Instalar Node.js y npm 📦
 
-- Descargar e instalar desde nodejs.org
+- Descargar e instalar desde [nodejs.org](https://nodejs.org)
 
-2. Crear proyecto con Vite:
+## 2. Crear proyecto con Vite ⚡
 
 npm create vite@latest my-project
 cd my-project
 npm install
 
-3. Estructura básica del proyecto:
+## 3. Estructura básica del proyecto 📁
 
 my-project/
 ├── src/
@@ -4066,7 +4066,7 @@ my-project/
 ├── vite.config.js
 └── package.json
 
-4. Configurar vite.config.js:
+## 4. Configurar vite.config.js ⚙️
 
 import { defineConfig } from 'vite'
 
@@ -4077,11 +4077,11 @@ outDir: 'dist'
 }
 })
 
-5. Instalar Bootstrap y Bootswatch:
+## 5. Instalar Bootstrap y Bootswatch 🎨
 
 npm install bootstrap bootswatch bootstrap-icons
 
-6. Configurar despliegue con GitHub Pages:
+## 6. Configurar despliegue con GitHub Pages 🌐
 
 npm install -D gh-pages
 
@@ -4093,19 +4093,19 @@ Añadir al package.json:
 }
 }
 
-7. Flujo de despliegue:
+## 7. Flujo de despliegue 🚀
 
 npm run build
 npm run deploy
 
-8. Instalación y configuración de Bootstrap, Bootswatch y SASS:
+## 8. Instalación y configuración de Bootstrap, Bootswatch y SASS 💅
 
-# Instalar dependencias
+### Instalar dependencias
 
 npm i bootstrap bootswatch @popperjs/core
 npm i sass -D
 
-# Contenido del package.json
+### Contenido del package.json
 
 {
 "name": "vanillagames10",
@@ -4128,7 +4128,7 @@ npm i sass -D
 }
 }
 
-# Configuración de vite.config.js
+### Configuración de vite.config.js
 
 import path from 'path'
 
@@ -4158,14 +4158,14 @@ hot: true
 }
 }
 
-# Contenido de src/scss/styles.scss
+### Contenido de src/scss/styles.scss
 
 // Import all of Bootstrap's CSS
 @import "~bootswatch/dist/yeti/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/yeti/bootswatch";
 
-# Actualización de main.js
+### Actualización de main.js
 
 // Import all of Bootstrap's JS
 import 'bootstrap'
@@ -4173,18 +4173,17 @@ import 'bootstrap'
 // Import our custom CSS
 import './scss/styles.scss'
 
-9. Desplegando la aplicación en GitHub Pages
+## 9. Desplegando la aplicación en GitHub Pages 🚀
 
 Para desplegar la aplicación en GitHub Pages, sigue estos pasos:
 
-    1. Crea un repositorio Git y sincronízalo con GitHub usando las herramientas de VSCode
+1. Crea un repositorio Git y sincronízalo con GitHub usando las herramientas de VSCode
 
-    2. Instala gh-pages como dependencia de desarrollo:
+2. Instala gh-pages como dependencia de desarrollo:
 
-    npm i gh-pages -D
+npm i gh-pages -D
 
-
-    3. Actualiza el package.json para incluir el script de deploy:
+3. Actualiza el package.json para incluir el script de deploy:
 
 {
 "name": "trabajos_alumnos",
@@ -4209,10 +4208,9 @@ Para desplegar la aplicación en GitHub Pages, sigue estos pasos:
 }
 }
 
-    4. Ejecuta los comandos para construir y desplegar:
+4. Ejecuta los comandos para construir y desplegar:
 
-        npm run build
-        npm run deploy
+npm run build
+npm run deploy
 
-
-        Esto creará la rama gh-pages y publicará tu aplicación en GitHub Pages.
+¡Y listo! 🎉 Esto crea la rama gh-pages y publicará la aplicación en GitHub Pages.
