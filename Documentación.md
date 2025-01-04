@@ -4035,3 +4035,184 @@ Por favor, introduce una descripción.
     </script>
 
 Se ha dejado solo el código imprescindible para entender el funcionamiento de la validación bootstrap
+
+# Entorno de desarrollo
+
+Para crear un proyecto con Vite, ESLint y Sass, seguimos los siguientes pasos:
+
+1. Instalar Node.js y npm:
+
+- Descargar e instalar desde nodejs.org
+
+2. Crear proyecto con Vite:
+
+npm create vite@latest my-project
+cd my-project
+npm install
+
+3. Estructura básica del proyecto:
+
+my-project/
+├── src/
+│ ├── components/
+│ │ ├── Header.js
+│ │ ├── Footer.js
+│ │ └── Router.js
+│ ├── pages/
+│ │ ├── Home.js
+│ │ └── About.js
+│ ├── main.js
+│ └── index.html
+├── vite.config.js
+└── package.json
+
+4. Configurar vite.config.js:
+
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+base: '/nombre-repositorio/',
+build: {
+outDir: 'dist'
+}
+})
+
+5. Instalar Bootstrap y Bootswatch:
+
+npm install bootstrap bootswatch bootstrap-icons
+
+6. Configurar despliegue con GitHub Pages:
+
+npm install -D gh-pages
+
+Añadir al package.json:
+
+{
+"scripts": {
+"deploy": "gh-pages -d dist"
+}
+}
+
+7. Flujo de despliegue:
+
+npm run build
+npm run deploy
+
+8. Instalación y configuración de Bootstrap, Bootswatch y SASS:
+
+# Instalar dependencias
+
+npm i bootstrap bootswatch @popperjs/core
+npm i sass -D
+
+# Contenido del package.json
+
+{
+"name": "vanillagames10",
+"private": true,
+"version": "0.0.0",
+"type": "module",
+"scripts": {
+"dev": "vite",
+"build": "vite build",
+"preview": "vite preview"
+},
+"devDependencies": {
+"sass": "^1.66.1",
+"vite": "^4.1.0"
+},
+"dependencies": {
+"@popperjs/core": "^2.11.8",
+"bootstrap": "^5.3.1",
+"bootswatch": "^5.3.1"
+}
+}
+
+# Configuración de vite.config.js
+
+import path from 'path'
+
+export default {
+root: path.resolve(**dirname, 'src'),
+resolve: {
+alias: {
+'~bootstrap': path.resolve(**dirname, 'node_modules/bootstrap'),
+'~bootswatch': path.resolve(**dirname, 'node_modules/bootswatch'),
+}
+},
+build: {
+rollupOptions: {
+input: {
+main: path.resolve(**dirname, 'src/index.html'),
+},
+output: {
+dir: path.resolve(**dirname, 'dist'),
+format: 'es',
+},
+},
+outDir: path.resolve(**dirname, 'dist'),
+minify: false,
+},
+server: {
+hot: true
+}
+}
+
+# Contenido de src/scss/styles.scss
+
+// Import all of Bootstrap's CSS
+@import "~bootswatch/dist/yeti/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/yeti/bootswatch";
+
+# Actualización de main.js
+
+// Import all of Bootstrap's JS
+import 'bootstrap'
+
+// Import our custom CSS
+import './scss/styles.scss'
+
+9. Desplegando la aplicación en GitHub Pages
+
+Para desplegar la aplicación en GitHub Pages, sigue estos pasos:
+
+    1. Crea un repositorio Git y sincronízalo con GitHub usando las herramientas de VSCode
+
+    2. Instala gh-pages como dependencia de desarrollo:
+
+    npm i gh-pages -D
+
+
+    3. Actualiza el package.json para incluir el script de deploy:
+
+{
+"name": "trabajos_alumnos",
+"private": true,
+"version": "0.0.0",
+"type": "module",
+"scripts": {
+"dev": "vite",
+"build": "vite build --emptyOutDir",
+"preview": "vite preview",
+"deploy": "gh-pages -d dist"
+},
+"devDependencies": {
+"gh-pages": "^5.0.0",
+"sass": "^1.58.3",
+"vite": "^4.1.0"
+},
+"dependencies": {
+"@popperjs/core": "^2.11.8",
+"bootstrap": "^5.3.1",
+"bootswatch": "^5.3.1"
+}
+}
+
+    4. Ejecuta los comandos para construir y desplegar:
+
+        npm run build
+        npm run deploy
+
+
+        Esto creará la rama gh-pages y publicará tu aplicación en GitHub Pages.
