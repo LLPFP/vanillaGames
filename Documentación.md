@@ -4052,15 +4052,13 @@ Creamos un proyecto con Vite, ESLint y Sass, siguiendo los siguientes pasos:
 
 ## 3. Estructura básica del proyecto 📁
 
-    my-project/
+    vanillaGames/
     ├── src/
-    │ ├── components/
+    │ ├── componentes/
     │ │ ├── Header.js
     │ │ ├── Footer.js
-    │ │ └── Router.js
-    │ ├── pages/
+    │ ├── vistas/
     │ │ ├── Home.js
-    │ │ └── About.js
     │ ├── main.js
     │ └── index.html
     ├── vite.config.js
@@ -4214,3 +4212,286 @@ Para desplegar la aplicación en GitHub Pages, sigue estos pasos:
    npm run deploy
 
 ¡Y listo! 🎉 Esto crea la rama gh-pages y publicará la aplicación en GitHub Pages.
+
+## 10. Componentes y vistas 🧩
+
+En una aplicación SPA (Single Page Application), todo el contenido se gestiona desde una única página HTML (index.html) con diferentes secciones que cambian según la interacción del usuario.
+
+### Estructura de Componentes
+
+Cada COMPONENTE tiene tres partes principales:
+
+1. Template: Código HTML del componente
+2. Script: Lógica JavaScript para el comportamiento
+3. Exportación del componente
+
+La estructura básica de un componente es:
+
+    export const componente = {
+    template: `
+        <!-- Código HTML del componente -->
+    `,
+    script: () => {
+        // Lógica JavaScript del componente
+    }
+    }
+
+### Estructura del Proyecto
+
+#### Componentes:
+
+- header.js
+- footer.js
+- editPerfil.js
+
+#### Vistas:
+
+- homeVista.js
+- registroVista.js
+- loginVista.js
+- proyectosVista.js
+- proyectoDetalleVista.js
+- proyectoNuevoVista.js
+- proyectoEditarVista.js
+- adminVista.js
+
+### Creación de Nueva Rama
+
+git checkout -b vistasHtml
+
+Una vez completado el desarrollo, fusionaremos a futuro esta rama con la rama main:
+
+    git checkout main
+    git merge vistasHtml
+
+### Template header.js
+
+El template del header.js:
+
+    export const header = {
+    template: // html
+    `
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"
+        ><img
+            src=".images/logo.svg"
+            alt=""
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+        />
+
+        Vanilla Games</a
+        >
+        <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        >
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">TOP5 Proyectos</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">A cerca de</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ms-auto me-2 mb-2 mb-lg-0">
+            <li class="nav-item">
+            <button class="ms-2 btn btn-success">
+                Iniciar sesión
+                <i class="bi bi-box-arrow-in-right"></i>
+            </button>
+            </li>
+            <li class="nav-item">
+            <button class="ms-2 btn btn-outline-light">
+                Regístrate
+                <i class="bi bi-box-arrow-in-right"></i>
+            </button>
+            </li>
+        </ul>
+        </div>
+
+    </div>
+    </nav>
+
+    `
+    }
+
+### Template footer.js
+
+    export const footer = {
+    template: // html
+    `
+    <nav class="navbar bg-secondary fixed-bottom small">
+        <div class="container">
+        <a class="navbar-brand" href="http://www.fpllefia.com">
+            <img
+            src=".images/logo.svg"
+            alt="fpllefia"
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+            />
+            FPLlefià
+        </a>
+        <span class="navbar-text">@Texto de header</span>
+        <a href="#" class="nav-link">Vínculo header</a>
+        </div>
+    </nav>
+    `
+    }
+
+### Template homeVista.js
+
+export default {
+template: // html
+`
+
+  <div class="container">
+    <h1 class="mt-5 text-center fw-bold" style="font-size: 100px">
+      Vanilla Games
+    </h1>
+    <div class="m-5 mx-auto" style="max-width: 400px">
+      <img src=".images/logo.svg" alt="fpllefia" class="img-fluid" />
+    </div>
+  </div>
+  `
+}
+
+### Actualización de index.html
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Games</title>
+    </head>
+    <body class="pt-5" style="overflow-x: hidden; padding-bottom: 100px">
+    <header></header>
+    <main></main>
+    <footer></footer>
+    <script type="module" src="/main.js"></script>
+    </body>
+    </html>
+
+### Configuración de vite.config.js
+
+    export default {
+    publicDir: 'assets',
+    server: {
+    /_ port: 8080, _/ // Podemos definir el puerto de salida
+    hot: true
+    }
+    }
+
+### Resultado
+
+![image](https://carrebola.github.io/vanillaPill/assets/images/homeVista-26d5e3faf07bed8e29f5d330d4bd48e8.png)
+
+### Instalación de bootstrap-icons
+
+    npm i bootstrap-icons
+
+### Configuración en styles.scss
+
+    $bootstrap-icons-font-dir: "../node_modules/bootstrap-icons/font/fonts";
+    @import "bootstrap-icons/font/bootstrap-icons";
+
+### Lógica para cada archivo .js
+
+export default {
+template: `  <!-- Aquí va el template HTML -->`,
+script: () => {
+console.log('vista registro cargada')
+
+    // Validación bootstrap
+    // Capturamos el formulario en una variable
+    const formulario = document.querySelector('#formRegistro')
+
+    // Detectamos su evento submit (enviar)
+    formulario.addEventListener('submit', (event) => {
+      // Detenemos el evento enviar (submit)
+      event.preventDefault()
+      event.stopPropagation()
+
+      // Comprobamos si el formulario no valida
+      if (!formulario.checkValidity()) {
+        // Y añadimos la clase 'was-validate' para que se muestren los mensajes
+        formulario.classList.add('was-validated')
+      }
+    })
+    }
+    }
+
+#### En main.js
+
+    // Inyectamos la vista home
+    document.querySelector('main').innerHTML = vista.template
+    // Ejecutamos la lógica de la vista
+    vista.script()
+
+#### Con el resultado final completo:
+
+      import { header } from './componentes/header'
+      import { footer } from './componentes/footer'
+
+      import './scss/styles.scss'
+
+      // Importamos la vista por defecto (que será home)
+      async function cargarVista() {
+        const componente = await import('./vistas/registroVista')
+        const vista = componente.default
+        // Inyectamos la vista home
+        document.querySelector('main').innerHTML = vista.template
+        // Ejecutamos la lógica de la vista
+        vista.script()
+      }
+      cargarVista()
+
+      // Inyectamos el componente header
+      document.querySelector('header').innerHTML = header.template
+
+      // Inyectamos el componente footer
+      document.querySelector('footer').innerHTML = footer.template
+
+### Pull Request #1: Integración de vistas HTML en rama principal
+
+#### Descripción
+
+Integración completa del desarrollo de vistas HTML y componentes base en la rama principal del proyecto. Este PR incluye la implementación de:
+
+- Estructura base de componentes (header, footer)
+- Sistema de enrutamiento dinámico
+- Vistas principales con sus respectivas plantillas
+- Implementación de formularios con validación
+- Estilos SCSS base
+
+#### Cambios realizados
+
+- Migración de componentes modulares
+- Implementación del sistema de carga asíncrona de vistas
+- Integración de estilos SCSS
+- Configuración de validaciones en formularios
+- Estructura de archivos organizada por componentes
+- Verificada la carga correcta de todas las vistas
+- Comprobado el funcionamiento de la navegación
+- Testados los formularios y sus validaciones
+
+#### Merge
+
+Rama origen: vistasHtml
+Rama destino: main
