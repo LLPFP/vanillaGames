@@ -1,3 +1,4 @@
+import misProyectosVista from '../vistas/misProyectosVista.js'
 
 export const enrutador = {
 
@@ -10,6 +11,7 @@ export const enrutador = {
       editarProyecto: import('../vistas/editarProyectoVista.js'),
       nuevoProyecto: import('../vistas/nuevoProyectoVista.js'),
       proyectos: import('../vistas/proyectosVista.js'),
+      misProyectos: import('../vistas/misProyectosVista.js'),
       registro: import('../vistas/registroVista.js'),
       login: import('../vistas/loginVista.js'),
       404: import('../vistas/404.js')

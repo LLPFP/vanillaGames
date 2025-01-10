@@ -15,4 +15,4 @@ document.querySelector("footer").innerHTML = footer.template;
 // Cargamos la vista por defecto (home)
 enrutador.observadorRutas()
 // Cargamos la página home
-window.location = '#/home'
+window.location = '#/misProyectos'

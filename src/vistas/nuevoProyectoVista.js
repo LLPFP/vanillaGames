@@ -109,9 +109,9 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, sunt? Recu
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-success mt-3">
+              <a type="submit" class="btn btn-success mt-3 router-link" href="#/misProyectos">
                 Subir proyecto
-              </button>
+              </a>
             </form>
           </div>
         </div>

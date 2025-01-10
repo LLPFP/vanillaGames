@@ -6,12 +6,12 @@ export default {
           <div class="col-12">
             <ul class="nav nav-tabs">
               <li class="nav-item w-50">
-                <a class="nav-link active" aria-current="page" href="#"
+                <a class="nav-link active" aria-current="page" href="#/proyectos"
                   >Todos los proyectos</a
                 >
               </li>
               <li class="nav-item w-50">
-                <a class="nav-link" href="#">Mis proyectos</a>
+                <a class="nav-link router-link" href="#/misProyectos">Mis proyectos</a>
               </li>
             </ul>
           </div>
@@ -19,7 +19,7 @@ export default {
         <div class="border border-top-0 p-3">
           <div class="row">
             <div class="col-12 col-sm-4 mb-3">
-              <button class="btn btn-primary w-100">Subir proyecto</button>
+              <a class="btn btn-primary w-100 router-link" href="#/nuevoProyecto">Subir proyecto</a>
             </div>
             <div class="d-flex col-12 col-sm-8 mb-3">
               <button class="btn btn-secondary me-2">
@@ -81,7 +81,7 @@ export default {
               <tr>
                 <td>
                   <div class="containerImagen">
-                    <img width="200px" src=".images/juego.jpg" alt="" />
+                    <img width="200px" src="./images/logo.svg" alt="" />
                   </div>
                 </td>
                 <td>Proyecto ejemplo 1</td>

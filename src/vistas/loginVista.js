@@ -43,7 +43,7 @@ export default {
               Iniciar sesión
             </button>
           </form>
-          <a class="d-block mt-5 btn btn-secondary mx-auto" href="#"
+          <a class="d-block mt-5 btn btn-secondary mx-auto router-link" href="#/registro"
             >¿Eres nuevo? Regístrate</a
           >
         </div>
