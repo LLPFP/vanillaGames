@@ -1,3 +1,7 @@
+// importamos la función ls del archivo funciones
+import { ls } from "../componentes/funciones";
+import { menuRol, menuUsuario } from "./menus";
+
 export const header = {
   // html
   template: `
@@ -37,23 +41,54 @@ export const header = {
           <a class="nav-link router-link" aria-current="page" href="#/adminUsuarios">A cerca de</a>
         </li>
       </ul>
-      <ul class="navbar-nav ms-auto me-2 mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="ms-2 btn btn-success router-link" aria-current="page" href="#/login">
-            Iniciar sesión
-            <i class="bi bi-box-arrow-in-right"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="ms-2 btn btn-outline-light router-link" aria-current="page" href="#/registro">
-            Regístrate
-            <i class="bi bi-box-arrow-in-right"></i>
-          </a>
-        </li>
-      </ul>
+
+       <!-- Aquí va el Menu rol -->
+      <div id="menuRol"></div>
+    
+      <!-- Aquí va el Menu usuario -->
+      <div id="menuUsuario"></div>
+
+      
     </div>
   </div>
 </nav>
 
   `,
+
+  script: () => {
+    console.log("Header cargado");
+
+    const rolUsuario = ls.getUsuario().rol;
+
+    switch (rolUsuario) {
+      case "registrado":
+        // menú rol
+        document.querySelector("#menuRol").innerHTML =
+          menuRol.templateRegistrado;
+        // menú usuario
+        document.querySelector("#menuUsuario").innerHTML =
+          menuUsuario.templateRegistrado;
+        break;
+      case "desarrollador":
+        // menú rol
+        document.querySelector("#menuRol").innerHTML =
+          menuRol.templateDesarrollador;
+        // menú usuario
+        document.querySelector("#menuUsuario").innerHTML =
+          menuUsuario.templateDesarrollador;
+        break;
+      case "admin":
+        // menú rol
+        document.querySelector("#menuRol").innerHTML = menuRol.templateAdmin;
+        // menú usuario
+        document.querySelector("#menuUsuario").innerHTML =
+          menuUsuario.templateAdmin;
+        break;
+      default: // Para usuarios anónimos
+        // menú rol
+        document.querySelector("#menuRol").innerHTML = menuRol.templateAnonimo;
+        // menú usuario: No tiene
+        break;
+    }
+  },
 };
