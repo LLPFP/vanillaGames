@@ -4495,3 +4495,118 @@ Integración completa del desarrollo de vistas HTML y componentes base en la ram
 
 - Rama origen: vistasHtml
 - Rama destino: main
+
+# Enrutamiento
+
+# Documentación del Proyecto: Implementación del Enrutador
+
+## Objetivo
+
+El objetivo de esta tarea fue implementar un sistema de enrutamiento en la aplicación web para cargar vistas de manera dinámica, sin recargar la página, usando JavaScript. Esto permite simular la carga de páginas independientes mediante el manejo de rutas en la URL (hash) y la actualización del contenido de la etiqueta `<main>`.
+
+## Pasos Realizados
+
+### 1. Estructura Inicial
+
+- Los componentes `header.js` y `footer.js` ya estaban cargados en sus respectivas etiquetas.
+- Las vistas se inyectaban manualmente en la etiqueta `<main>`.
+- Se estableció la necesidad de crear un enrutador que gestionara las vistas como si fueran páginas HTML independientes.
+
+### 2. Creación del Componente `enrutador.js`
+
+- Se creó un componente llamado `enrutador.js` para gestionar las rutas y cargar las vistas de manera dinámica.
+- Dentro de este componente, se definió un objeto `enrutador` con las siguientes propiedades:
+  - **rutas**: Objeto que mapea las rutas con sus respectivas vistas importadas.
+  - **router()**: Método encargado de inyectar las vistas en `<main>` y cargar los scripts.
+  - **observadorRutas()**: Método que escucha los eventos de navegación (clics en enlaces y cambios en el historial).
+
+### 3. Definición de Rutas
+
+- Se definió la propiedad `rutas` dentro del objeto `enrutador`, donde se almacenan las rutas de las vistas importadas dinámicamente mediante `import()`.
+- Se añadieron vistas como `home`, `admin`, `registro`, `login`, entre otras, además de una vista `404` para manejar errores.
+
+### 4. Método `observadorRutas()`
+
+- Este método se encarga de escuchar tres eventos de navegación:
+  - **Click en enlaces**: Se usó el evento `click` sobre el cuerpo del documento (`<body>`) para interceptar clics en enlaces con la clase `router-link`.
+  - **Cambio en el historial**: Se utilizó el evento `popstate` para detectar cambios en el historial cuando el usuario navega hacia adelante o atrás.
+- En el evento `click`, se utilizó `event.preventDefault()` para evitar que la página se recargara. Luego, se actualizó el historial con `window.history.pushState()` y se ejecutó el método `router()` para actualizar la vista.
+
+### 5. Método `router()`
+
+- El método `router()` gestiona la carga de vistas. Este método obtiene el hash de la URL (lo que sigue después del `#`), luego extrae la ruta y los parámetros (si existen).
+- Para la vista correspondiente, se consulta el objeto `rutas` utilizando la sintaxis de corchetes para acceder dinámicamente a las rutas.
+- Si la vista existe, se inyecta el template en `<main>` y se ejecuta el script asociado. Si no, se redirige a la vista de error (`404`).
+
+### 6. Actualización de la Página Principal (`main.js`)
+
+- En `main.js`, se importó el componente `enrutador` y se llamó a `enrutador.observadorRutas()` para iniciar la escucha de los eventos de navegación tan pronto como la aplicación cargara.
+- Se modificó la inyección manual de la vista `home` en `<main>`, utilizando `window.location = '#/home'` para redirigir a la vista principal de forma programática.
+
+### 7. Pruebas de Navegación
+
+- Se añadieron enlaces en la barra de navegación (`header.js`) con la clase `router-link`, para que al hacer clic se gestionara la navegación sin recargar la página.
+- Se verificó que los enlaces funcionaran correctamente, mostrando las vistas correspondientes sin recargar la página. También se probaron los botones de navegación hacia atrás y adelante en el historial para comprobar que la vista se actualizara adecuadamente.
+
+### 8. Optimización y Resultados
+
+- Al finalizar, la aplicación comenzó a comportarse como una SPA (Single Page Application), cargando las vistas de manera dinámica según la ruta en la URL.
+- Usando `window.history.pushState()`, se logró actualizar la URL y gestionar el historial del navegador sin recargar la página, mejorando la experiencia del usuario.
+
+## Código Final de `enrutador.js`
+
+```javascript
+export const enrutador = {
+  rutas: {
+    home: import("../vistas/homeVista.js"),
+    admin: import("../vistas/adminVista.js"),
+    registro: import("../vistas/registroVista.js"),
+    login: import("../vistas/loginVista.js"),
+    proyectos: import("../vistas/proyectosVista.js"),
+    proyectoNuevo: import("../vistas/proyectoNuevoVista.js"),
+    proyectoEditar: import("../vistas/proyectoEditarVista.js"),
+    proyectoDetalle: import("../vistas/proyectoDetalleVista.js"),
+    404: import("../vistas/404.js"),
+  },
+
+  router: async () => {
+    const pathCompleto = window.location.hash;
+    const path = pathCompleto.split("/")[1];
+    const parametro = pathCompleto.split("/")[2];
+
+    const componenteVista = await enrutador.rutas[path];
+    if (componenteVista) {
+      const vista = await componenteVista.default;
+      document.querySelector("main").innerHTML = vista.template;
+      vista.script(parametro);
+    } else {
+      window.location = "#/404";
+    }
+  },
+
+  observadorRutas: () => {
+    document.body.addEventListener("click", (event) => {
+      const link = event.target;
+      if (link.classList.contains("router-link")) {
+        event.preventDefault();
+        const href = link.getAttribute("href");
+        window.history.pushState({ path: href }, "", href);
+        enrutador.router();
+      }
+    });
+
+    window.addEventListener("popstate", () => {
+      enrutador.router();
+    });
+  },
+};
+```
+
+## Próximos Pasos
+
+- Seguir agregando vistas al proyecto, actualizando la propiedad `rutas` cada vez que se cree una nueva vista.
+- Optimizar el manejo de parámetros en las rutas, si es necesario, para mejorar la gestión de vistas dinámicas con IDs u otros parámetros.
+
+---
+
+Este sistema de enrutamiento ahora permite navegar entre diferentes vistas de manera fluida y sin recargar la página, simulando un comportamiento típico de aplicaciones de una sola página (SPA).
