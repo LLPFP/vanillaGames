@@ -1,6 +1,7 @@
 // importamos la función ls del archivo funciones
 import { ls } from "../componentes/funciones";
 import { menuRol, menuUsuario } from "./menus";
+import { editarPerfil } from "./editarPerfil";
 
 export const header = {
   // html
@@ -44,11 +45,12 @@ export const header = {
 
        <!-- Aquí va el Menu rol -->
       <div id="menuRol"></div>
-    
+
+      <div id="modal">
+        <!-- Aquí inyectamos el componente editarPerfil -->
+      </div>
       <!-- Aquí va el Menu usuario -->
       <div id="menuUsuario"></div>
-
-      
     </div>
   </div>
 </nav>
@@ -59,6 +61,8 @@ export const header = {
     console.log("Header cargado");
 
     const rolUsuario = ls.getUsuario().rol;
+
+    document.querySelector("#modal").innerHTML = editarPerfil.template;
 
     switch (rolUsuario) {
       case "registrado":
