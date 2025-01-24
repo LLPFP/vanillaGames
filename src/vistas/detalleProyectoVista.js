@@ -27,12 +27,13 @@ export default {
                     class="container fixed-bottom d-flex justify-content-end"
                     style="padding: 0px 0px 100px 0px"
                 >
-                    <button
-                        class="btn btn-success rounded-circle fs-3 shadow"
+                    <a
+                        href="#/editarProyecto" aria-current="page"
+                        class="btn btn-success rounded-circle fs-3 shadow router-link"
                         style="width: 50px"
                     >
                         <i class="bi bi-pencil"></i>
-                    </button>
+                    </a>
                 </div>
                 
             </div>

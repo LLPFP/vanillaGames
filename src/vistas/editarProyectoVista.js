@@ -114,11 +114,13 @@ export default {
               </div>
 
               <!-- Submit -->
-              <input
+              <a
                 type="submit"
-                class="btn btn-success mt-3"
-                value="Subir proyecto"
+                class="btn btn-success mt-3 router-link"
+                href="#/misProyectos" aria-current="page" 
               />
+              Subir proyecto
+              </a>
             </div>
           </div>
         </form>

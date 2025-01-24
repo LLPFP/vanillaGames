@@ -6,12 +6,12 @@ export default {
           <div class="col-12">
             <ul class="nav nav-tabs">
               <li class="nav-item w-50">
-                <a class="nav-link active" aria-current="page" href="#"
+                <a class="nav-link router-link active" aria-current="page" href="#/adminUsuarios"
                   >Usuarios</a
                 >
               </li>
               <li class="nav-item w-50">
-                <a class="nav-link" href="#">Proyectos</a>
+                <a class="nav-link router-link" href="#/adminProyectos">Proyectos</a>
               </li>
             </ul>
           </div>

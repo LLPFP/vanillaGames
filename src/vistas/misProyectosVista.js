@@ -1,45 +1,52 @@
 export default {
   template: `
-  <div class="container-fluid">
-        <h1 class="mt-5">Panel de administración</h1>
-        <!-- tabs -->
-        <div class="row mt-5">
-          <div class="col-12">
-            <ul class="nav nav-tabs">
-              <li class="nav-item w-50">
-                <a class="nav-link router-link" aria-current="page" href="#/adminUsuarios">Usuarios</a>
-              </li>
-              <li class="nav-item w-50">
-                <a class="nav-link router-link active" href="#/adminProyectos">Proyectos</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- tabla proyectos -->
-        <div class="border border-top-0 p-3">
-          <!-- buscador -->
-          <div class="row">
-            <div class="d-flex col-12 col-md-6 mb-3">
-              <div class="input-group flex-nowrap">
-                <span class="input-group-text" id="addon-wrapping"
-                  ><i class="bi bi-search"></i
-                ></span>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Buscador"
-                  aria-label="Username"
-                  aria-describedby="addon-wrapping"
-                />
-                <span class="input-group-text" id="addon-wrapping"
-                  ><i class="bi bi-x"></i
-                ></span>
-              </div>
+         <div class="container">
+          <h1 class="mt-5">Proyectos</h1>
+          <div class="row mt-5">
+            <div class="col-12">
+              <ul class="nav nav-tabs">
+                <li class="nav-item w-50">
+                  <a class="nav-link router-link" aria-current="page" href="#/proyectos"
+                    >Todos los proyectos</a
+                  >
+                </li>
+                <li class="nav-item w-50">
+                  <a class="nav-link active" href="#/misProyectos">Mis proyectos</a>
+                </li>
+              </ul>
             </div>
           </div>
-
-          <!-- tabla proyectos -->
+          <div class="border border-top-0 p-3">
+            <div class="row">
+              <div class="col-12 col-sm-4 mb-3">
+                <a class="btn btn-primary w-100 router-link" href="#/nuevoProyecto">Subir proyecto</a>
+              </div>
+              <div class="d-flex col-12 col-sm-8 mb-3">
+                <button class="btn btn-secondary me-2">
+                  <i class="bi bi-grid-3x3-gap"></i>
+                </button>
+                <button class="btn btn-secondary me-2">
+                  <i class="bi bi-list"></i>
+                </button>
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"
+                    ><i class="bi bi-search"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Buscador"
+                    aria-label="Username"
+                    aria-describedby="addon-wrapping"
+                  />
+                  <span class="input-group-text" id="addon-wrapping"
+                    ><i class="bi bi-x"></i
+                  ></span>
+                  
+                </div>
+                
+              </div>
+              <!-- tabla proyectos -->
           <div class="col-12" style="overflow-x: auto">
             <table
               class="table table-hover align-middle mt-3"
@@ -75,10 +82,13 @@ export default {
               <tr>
                 <td>
                   <div class="containerImagen">
-                    <img width="200px" src=".images/juego.jpg" alt="" />
+                    <a class="router-link" href="#/detalleProyecto" aria-current="page">
+                        <img width="90px" src="https://cdn.pixabay.com/photo/2016/10/28/11/57/tic-tac-toe-1777859_960_720.jpg" alt="" />
+                    </a>
                   </div>
                 </td>
-                <td>Proyecto ejemplo 1</td>
+            
+                <td><a class="router-link text-decoration-none text-black" href="#/detalleProyecto" aria-current="page">Proyecto ejemplo 1</a></td>
                 <td>Ejemplo de web para centro fp</td>
                 <td>
                   <a href="http://www.fpllefia.con">http://www.fpllefia.con</a>
@@ -93,10 +103,12 @@ export default {
               <tr>
                 <td>
                   <div class="containerImagen">
-                    <img width="200px" src=".images/juego.jpg" alt="" />
-                  </div>
+                    <a class="router-link" href="#/detalleProyecto" aria-current="page">
+                        <img width="90px" src="https://cdn.pixabay.com/photo/2016/10/28/11/57/tic-tac-toe-1777859_960_720.jpg" alt="" />
+                    </a>
+                    </div>
                 </td>
-                <td>Proyecto ejemplo 1</td>
+                <td><a class="router-link text-decoration-none text-black" href="#/detalleProyecto" aria-current="page">Proyecto ejemplo 1</a></td>
                 <td>Ejemplo de web para centro fp</td>
                 <td>
                   <a href="http://www.fpllefia.con">http://www.fpllefia.con</a>
@@ -111,10 +123,12 @@ export default {
               <tr>
                 <td>
                   <div class="containerImagen">
-                    <img width="200px" src=".images/juego.jpg" alt="" />
-                  </div>
+                    <a class="router-link" href="#/detalleProyecto" aria-current="page">
+                        <img width="90px" src="https://cdn.pixabay.com/photo/2016/10/28/11/57/tic-tac-toe-1777859_960_720.jpg" alt="" />
+                    </a>
+                    </div>
                 </td>
-                <td>Proyecto ejemplo 1</td>
+                <td><a class="router-link text-decoration-none text-black" href="#/detalleProyecto" aria-current="page">Proyecto ejemplo 1</a></td>
                 <td>Ejemplo de web para centro fp</td>
                 <td>
                   <a href="http://www.fpllefia.con">http://www.fpllefia.con</a>
@@ -130,7 +144,10 @@ export default {
           </div>
         </div>
       </div>
-    `,
-
-  script: () => {},
+      
+            </div>
+            </div>
+          </div>
+        </div>
+      `,
 };
