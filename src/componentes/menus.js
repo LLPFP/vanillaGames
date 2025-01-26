@@ -48,7 +48,7 @@ const menuUsuario = {
         <img src="images/avatar.svg" alt="" width="25" />
       </a>
       <ul class="dropdown-menu me-0" style="left: -100px; width: 100px">
-        <li class="text-light text-end p-2 small">
+        <li class="text-light text-end p-2 small emailUserMenu">
           ${ls.getUsuario().email}
         </li>
         <li class="text-light text-end pe-2 small fst-italic">
@@ -63,7 +63,7 @@ const menuUsuario = {
           data-bs-target="#modalEditarPerfil">Mi perfil</a>
         </li>
         <li><hr class="dropdown-divider" /></li>
-        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+        <li><a class="dropdown-item cerrarSesion" href="#">Cerrar sesión</a></li>
       </ul>
     </li>
   </ul>

@@ -24,5 +24,3 @@ export const ls = {
     localStorage.setItem("usuarioVanilla", usuarioJSON);
   },
 };
-// Simulamos el inicio de sesión de un usuario
-ls.setUsuario({ email: "chafardera@gmial.com", rol: "registrado" });
