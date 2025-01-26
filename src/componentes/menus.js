@@ -48,10 +48,10 @@ const menuUsuario = {
         <img src="images/avatar.svg" alt="" width="25" />
       </a>
       <ul class="dropdown-menu me-0" style="left: -100px; width: 100px">
-        <li class="text-light text-end p-2 small" data-bs-target="emailUserMenu">
+        <li class="text-light text-end p-2 small emailUserMenu" data-bs-target="emailUserMenu">
           ${ls.getUsuario().email}
         </li>
-        <li class="text-light text-end pe-2 small fst-italic">
+        <li class="text-light text-end pe-2 small fst-italic rolUserMenu">
           ${ls.getUsuario().rol}
         </li>
         <li><hr class="dropdown-divider" /></li>
