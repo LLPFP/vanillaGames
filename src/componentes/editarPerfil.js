@@ -74,7 +74,7 @@ export const editarPerfil = {
                     class="form-control"
                   />
                   <div class="invalid-feedback">
-                    La contraseña debe ser de 6 caracteres como mínimo
+                    La contraseña debe ser de 6 caracteres como mínimo.
                   </div>
                 </div>
               </div>
