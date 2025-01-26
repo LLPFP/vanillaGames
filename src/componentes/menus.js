@@ -21,8 +21,8 @@ const menuRol = {
   // html
   templateRegistrado: `
   <ul class="navbar-nav ms-auto me-2 mb-2 mb-lg-0">
-    <li class="nav-item">
-      <a class="nav-link active router-link" aria-current="page" href="#/proyectos">PROYECTOS</a>
+    <li class="nav-item ">
+      <a class="nav-link active router-link " aria-current="page" href="#/proyectos">PROYECTOS</a>
     </li>
     
   </ul>
@@ -48,7 +48,7 @@ const menuUsuario = {
         <img src="images/avatar.svg" alt="" width="25" />
       </a>
       <ul class="dropdown-menu me-0" style="left: -100px; width: 100px">
-        <li class="text-light text-end p-2 small emailUserMenu">
+        <li class="text-light text-end p-2 small" data-bs-target="emailUserMenu">
           ${ls.getUsuario().email}
         </li>
         <li class="text-light text-end pe-2 small fst-italic">

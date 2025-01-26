@@ -21,7 +21,7 @@ export const perfiles = [
     avatar:
       "https://s.libertaddigital.com/2020/09/15/1920/1080/fit/carmen-maura-roman.jpg",
     estado: "Inactivo",
-    rol: "desarrollador",
+    rol: "registrado",
     email: "carmen@example.com",
     contraseña: "123456",
   },
