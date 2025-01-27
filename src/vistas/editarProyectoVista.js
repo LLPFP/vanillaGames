@@ -1,154 +1,182 @@
+import { proyectos } from "../bd/datosPrueba";
+
 export default {
+  // html
   template: `
-   <div class="container">
-        <h1 class="mt-5">Edición de proyecto</h1>
-        <div class="d-flex justify-content-end">
-          <bottom class="btn btn-outline-secondary mt-5">
-            <i class="bi bi-arrow-bar-left" style="font-size: 1em"></i>
-            Volver</bottom
-          >
+  <div class="container">
+  <h1 class="mt-5">Edición de proyecto</h1>
+  <div class="d-flex justify-content-end">
+    <bottom id="botonVolver" class="btn btn-outline-secondary mt-5 bi bi-arrow-bar-left router-link">
+      Volver</bottom
+    >
+  </div>
+  <form novalidate id="formularioEditarProyecto" action="" class="form">
+    <div class="row mt-2">
+      <div class="col-12 col-md-4 pt-2 mb-3">
+        <img id="imagenJuego" src="images/juego.jpg" alt="" class="img-fluid" />
+        <label class="form-label mt-2" for="urlImagen"
+          ><strong>URL imagen: </strong></label
+        >
+        <input
+          id="urlImagen"
+          type="text"
+          class="form-control"
+          value="http://enlaceImagen.com"
+        />
+        <div class="invalid-feedback">
+          No es una url correcta
         </div>
-        <form action="" class="needs-validation" novalidate>
-          <div class="row mt-2">
-            <div class="col-12 col-md-4 pt-2 mb-3">
-              <img src=".images/juego.jpg" alt="" class="img-fluid" />
-              <label class="form-label mt-2" for="urlImagen"
-                ><strong>URL imagen: </strong></label
-              >
-              <input
-                id="urlImagen"
-                type="url"
-                class="form-control"
-                value="http://enlaceImagen.com"
-                required
-              />
-              <div class="invalid-feedback">
-                Por favor, introduce una URL válida para la imagen
-              </div>
-            </div>
-            <div class="col-12 col-md-8">
-              <!-- Formulario nuevo proyecto -->
+      </div>
+      <div class="col-12 col-md-8">
+        <!-- Formulario nuevo proyecto -->
 
-              <!-- Nombre proyecto -->
-              <label class="form-label" for="nombre"
-                ><strong>Nombre: </strong></label
-              >
-              <input
-                required
-                id="nombre"
-                type="text"
-                value="Nombre Autor"
-                class="form-control"
-              />
-              <div class="invalid-feedback">
-                Por favor, introduce un nombre para el proyecto
-              </div>
+        <!-- Nombre proyecto -->
+        <label class="form-label" for="nombre"><strong>Nombre: </strong></label>
+        <input
+          required
+          id="nombreJuego"
+          type="text"
+          value="Nombre Autor"
+          class="form-control"
+        />
+        <div class="invalid-feedback">
+          Debe tener un nombre de proyecto
+        </div>
 
-              <!-- Descripción -->
-              <label class="form-label mt-2" for="descripcion"
-                ><strong>Descripción: </strong></label
-              >
-              <textarea id="descripcion" class="form-control" rows="4" required>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, sunt? Recusandae labore at voluptatem tempore incidunt distinctio eaque? Est aspernatur laudantium itaque ullam numquam autem dolor quia amet eum consectetur.</textarea
-              >
-              <div class="invalid-feedback">
-                Por favor, añade una descripción del proyecto
-              </div>
+        <!-- Descripción -->
+        <label class="form-label mt-2" for="descripcion"
+          ><strong>Descripción: </strong></label
+        >
+        <textarea id="descripcion" class="form-control" rows="4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, sunt? Recusandae labore at voluptatem tempore incidunt distinctio eaque? Est aspernatur laudantium itaque ullam numquam autem dolor quia amet eum consectetur.</textarea
+        >
 
-              <!-- Estado -->
-              <label class="form-label mt-2" for="estado"
-                ><strong>Estado: </strong></label
-              >
-              <select required id="estado" class="form-control">
-                <option value="">Selecciona un estado</option>
-                <option value="estado">estado</option>
-                <option value="otro estado">otro estado</option>
-              </select>
-              <div class="invalid-feedback">
-                Por favor, selecciona un estado para el proyecto
-              </div>
+        <!-- Estado -->
+        <label class="form-label mt-2" for="estado"
+          ><strong>Estado: </strong></label
+        >
+        <select required id="estado" class="form-control">
+          <option value="Cerrado">Cerrado</option>  
+          <option value="En desarrollo">En desarrollo</option>
+        </select>
+        <div class="invalid-feedback">
+          Debes definir un estado
+        </div>
 
-              <!-- Fecha -->
-              <label class="form-label mt-2" for="fecha"
-                ><strong>Fecha: </strong></label
-              >
-              <input
-                id="fecha"
-                type="date"
-                class="form-control"
-                value="12/12/2023"
-                required
-              />
-              <div class="invalid-feedback">
-                Por favor, selecciona una fecha
-              </div>
+        <!-- Fecha -->
+        <label class="form-label mt-2" for="fecha"
+          ><strong>Fecha: </strong></label
+        >
+        <input id="fecha" type="date" class="form-control"  />
+        <div class="invalid-feedback">
+          El formato no es correcto
+        </div>
 
-              <!-- Enlace al proyecto -->
-              <label class="form-label mt-2" for="enlace"
-                ><strong>Enlace: </strong></label
-              >
-              <input
-                id="enlace"
-                type="url"
-                class="form-control"
-                value="http://enlace.com"
-                required
-              />
-              <div class="invalid-feedback">
-                Por favor, introduce una URL válida para el proyecto
-              </div>
+        <!-- Enlace al proyecto -->
+        <label class="form-label mt-2" for="enlace"
+          ><strong>Enlace: </strong></label
+        >
+        <input
+          id="enlace"
+          type="url"
+          class="form-control"
+          value="http://enlace.com"
+        />
+        <div class="invalid-feedback">
+          No es una url correcta
+        </div>
 
-              <!-- Repositorio -->
-              <label class="form-label mt-2" for="repositorio"
-                ><strong>Repositorio: </strong></label
-              >
-              <input
-                id="repositorio"
-                type="url"
-                class="form-control"
-                value="user.github.com/123456"
-                required
-              />
-              <div class="invalid-feedback">
-                Por favor, introduce una URL válida para el repositorio
-              </div>
+        <!-- Repositorio -->
+        <label class="form-label mt-2" for="repositorio"
+          ><strong>Repositorio: </strong></label
+        >
+        <input
+          id="repositorio"
+          type="text"
+          class="form-control"
+          value="user.github.com/123456"
+        />
 
-              <!-- Submit -->
-              <a
-                type="submit"
-                class="btn btn-success mt-3 router-link"
-                href="#/misProyectos" aria-current="page" 
-              />
-              Subir proyecto
-              </a>
-            </div>
-          </div>
-        </form>
-      </div>`,
+        <!-- Submit -->
+        <input
+          id="subirProyecto"
+          type="submit"
+          class="btn btn-success mt-3"
+          value="Actualizar proyecto"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+  `,
+  script: (id) => {
+    // Simulamos la consulta a un proyecto por id
+    const proyectoArray = proyectos.filter((p) => p.id == id);
+    const proyecto = proyectoArray[0];
 
-  script: () => {
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (() => {
-      "use strict";
+    // Transformamos la fecha en un formato yy-mm-dd
+    const fecha = proyecto.created_at;
+    const fechaCorta = fecha.split("T")[0];
 
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      const forms = document.querySelectorAll(".needs-validation");
+    // Insertamos los datos en el formulario
+    document.querySelector("#imagenJuego").setAttribute("src", proyecto.imagen);
+    document.querySelector("#urlImagen").value = proyecto.imagen;
+    document.querySelector("#nombreJuego").value = proyecto.nombre;
+    document.querySelector("#descripcion").value = proyecto.descripcion;
+    document.querySelector("#estado").value = proyecto.estado;
+    document.querySelector("#fecha").value = fechaCorta;
+    console.log(fechaCorta);
+    document.querySelector("#enlace").value = proyecto.enlace;
+    document.querySelector("#repositorio").value = proyecto.repositorio;
 
-      // Loop over them and prevent submission
-      Array.from(forms).forEach((form) => {
-        form.addEventListener(
-          "submit",
-          (event) => {
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
+    // Boton volver atras
+    document.querySelector("#botonVolver").addEventListener("click", () => {
+      window.history.back();
+    });
 
-            form.classList.add("was-validated");
-          },
-          false
-        );
-      });
-    })();
+    // Actualización de la imagen a partir de la urlImagen
+    // Capturamos input
+    const inputUrl = document.querySelector("#urlImagen");
+    // Detectamos cambios en su value
+    inputUrl.addEventListener("input", () => {
+      const imagen = document.querySelector("#imagenJuego");
+      // Actualizamos el atributo src y por lo tanto la imagen
+      imagen.setAttribute("src", inputUrl.value);
+    });
+
+    // Validación BOOTSTRAP
+    // Capturamos el formulario en una variable
+    const formulario = document.querySelector("#formularioEditarProyecto");
+    // Detectamos su evento submit (enviar)
+    formulario.addEventListener("submit", (event) => {
+      // Detenemos el evento enviar (submit)
+      event.preventDefault();
+      event.stopPropagation();
+      // Comprobamos si el formulario no valida
+      if (!formulario.checkValidity()) {
+        // Y añadimos la clase 'was-validate' para que se muestren los mensajes
+        formulario.classList.add("was-validated");
+      } else {
+        //* ** ENVIAMOS DATOS A LA BASE DE DATOS */
+        enviaDatos();
+      }
+    });
+
+    // Función para enviar datos a la base de datos
+    function enviaDatos() {
+      const proyectoEditado = {
+        imagen: document.querySelector("#urlImagen").value,
+        nombre: document.querySelector("#nombreJuego").value,
+        descripcion: document.querySelector("#descripcion").value,
+        estado: document.querySelector("#estado").value,
+        enlace: document.querySelector("#enlace").value,
+        repositorio: document.querySelector("#repositorio").value,
+      };
+      alert(`Enviando a la base de datos el objeto con id = ${proyecto.id}`);
+      console.log(
+        `Enviando a la base de datos el objeto con id = ${proyecto.id}`,
+        proyectoEditado
+      );
+    }
   },
 };

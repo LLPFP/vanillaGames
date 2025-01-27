@@ -203,6 +203,7 @@ export default {
         if (usuario.user_id === proyecto.user_id) {
           botones = `
           <a
+            href="#/proyectoEditar/${proyecto.id}"
             data-id = ${proyecto.id}
             class="botonAdmin botonEditar d-none d-sm-inline btn btn-sm btn-outline-primary bi bi-pencil"
           ></a>
@@ -401,7 +402,7 @@ export default {
           console.log("Editar proyecto " + id);
 
           // Cargamos la vista para editar proyecto pasandole como parámetro el id
-          window.location = `#/proyectoEditar/${id}`;
+          window.location = `#/editarProyecto/${id}`;
         } else if (boton.classList.contains("botonBorrar")) {
           // Si se trata de borrar
           alert("Borrar proyecto " + id);
@@ -413,7 +414,7 @@ export default {
       if (event.target.tagName === "TD") {
         console.log("clic en td");
         id = event.target.parentNode.dataset.id;
-        window.location = `#/proyectoDetalle/${id}`;
+        window.location = `#/detalleProyecto/${id}`;
       }
       // Si hacemos clic sobre la imagen de tabla o de vista tarjetas
       if (event.target.classList.contains("verDetalle")) {
