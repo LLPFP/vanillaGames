@@ -1,16 +1,12 @@
-import misProyectosVista from "../vistas/misProyectosVista.js";
-
 export const enrutador = {
   // Objeto (diccionario) con todas las rutas y su vista asociada
   rutas: {
     home: import("../vistas/homeVista.js"),
-    adminProyectos: import("../vistas/adminProyectosVista.js"),
-    adminUsuarios: import("../vistas/adminUsuariosVista.js"),
+    adminVista: import("../vistas/adminVista.js"),
     detalleProyecto: import("../vistas/detalleProyectoVista.js"),
     editarProyecto: import("../vistas/editarProyectoVista.js"),
     nuevoProyecto: import("../vistas/nuevoProyectoVista.js"),
     proyectos: import("../vistas/proyectosVista.js"),
-    misProyectos: import("../vistas/misProyectosVista.js"),
     registro: import("../vistas/registroVista.js"),
     login: import("../vistas/loginVista.js"),
     404: import("../vistas/404.js"),

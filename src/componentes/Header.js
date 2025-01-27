@@ -39,7 +39,7 @@ export const header = {
           <a class="nav-link router-link" aria-current="page" href="#">TOP5 Proyectos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link router-link" aria-current="page" href="#" class="router-link">A cerca de</a>
+          <a class="nav-link router-link" aria-current="page" href="#/adminVista" class="router-link">A cerca de</a>
         </li>
       </ul>
 
