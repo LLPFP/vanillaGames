@@ -419,7 +419,7 @@ export default {
       // Si hacemos clic sobre la imagen de tabla o de vista tarjetas
       if (event.target.classList.contains("verDetalle")) {
         id = event.target.dataset.id;
-        window.location = `#/proyectoDetalle/${id}`;
+        window.location = `#/detalleProyecto/${id}`;
       }
     });
 
