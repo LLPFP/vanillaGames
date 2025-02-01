@@ -1,5 +1,5 @@
-import { proyectos, perfiles } from "../bd/datosPrueba";
-import { ls } from "../componentes/funciones";
+import { proyectos, perfiles } from "../bd/datosPrueba.js";
+import { ls } from "../componentes/funciones.js";
 import { editarImagenPerfil } from "../componentes/editarImagenPerfil.js";
 
 export default {
@@ -32,8 +32,16 @@ export default {
   </div>
   <div class="border border-top-0 p-3">
     <div class="row">
+      <div class="col-12 col-sm-4 mb-3">
+      <!-- Boton para subir proyectos -->
+        <a id="botonSubirProyecto" href="#/proyectoNuevo" class="btn btn-primary w-100 router-link">Subir proyecto</a>
+      </div>
       <div class="d-flex col-12 col-sm-8 mb-3">
-       
+        <!-- Botones para alternar entre vista de tabla o de tarjetas -->
+        <button class="vistaTabla btn btn-secondary me-2 bi bi-list">
+        </button>
+        <button class="vistaTarjetas btn btn-secondary me-2 bi bi-grid-3x3-gap ">
+        </button>
         <!-- Buscador -->
         <div class="input-group flex-nowrap">
           <span class="input-group-text" id="addon-wrapping"
@@ -75,8 +83,6 @@ export default {
 
   </div>
 </div>
- ${editarImagenPerfil.template} 
-
   `,
   script: () => {
     // Capturamos los datos del usuario logueado
@@ -360,14 +366,13 @@ export default {
                     </select>
                   </td>
                   <td>
+                    <button data-id="${usuario.user_id}" class="btn btn-sm btn-outline-danger bi bi-trash3 botonEliminar"></button>
+                  </td>
+                  <td>
                     <button data-id="${usuario.user_id}" type="submit" class="btn btn-sm btn-success botonActualizar">
                       Actualizar
                     </button>
                   </td>
-                  <td>
-                    <button data-id="${usuario.user_id}" class="btn btn-sm btn-outline-danger bi bi-trash3 botonEliminar"></button>
-                  </td>
-                  
               </tr>
           `;
       });

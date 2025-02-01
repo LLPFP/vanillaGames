@@ -95,7 +95,6 @@ export default {
         </thead>
         <tbody id="tbodyProyectos">
           <!-- Aqui van los datos generados por la lógica -->
-          <p>No tienes proyectos</p>
         </tbody>
       </table>
     </div>
@@ -103,7 +102,6 @@ export default {
     <!-- Panel de tarjetas -->
     <div id="tabTarjetas" class="d-xl-none row">
       <!-- Aqui van los datos generados por la lógica -->
-      <p>No tienes proyectos</p>
     </div>
   </div>
 </div>
