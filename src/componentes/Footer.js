@@ -5,7 +5,7 @@ export const footer = {
     <div class="container">
       <a class="navbar-brand" href="http://www.fpllefia.com">
         <img
-          src="./assets/images/logo.svg""
+          src="images/logo.svg""
           alt="fpllefia"
           width="30"
           height="24"
