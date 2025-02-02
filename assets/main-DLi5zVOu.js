@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./adminVista-DmzDlI3f.js","./datosPrueba-BtcYjQH3.js","./detalleProyectoVista-BYYtikjw.js","./editarProyectoVista-z1MvyiR9.js","./proyectosVista-D97zvd4z.js","./loginVista-YB2FHD9e.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./adminVista-CUUdS8eJ.js","./datosPrueba-BtcYjQH3.js","./detalleProyectoVista-BYYtikjw.js","./editarProyectoVista-z1MvyiR9.js","./proyectosVista-C3XdmE82.js","./loginVista-D6Art7B2.js"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -5432,7 +5432,7 @@ const footer = {
     <div class="container">
       <a class="navbar-brand" href="http://www.fpllefia.com">
         <img
-          src="./assets/images/logo.svg""
+          src="images/logo.svg""
           alt="fpllefia"
           width="30"
           height="24"
@@ -5522,13 +5522,13 @@ const enrutador = {
   // Objeto (diccionario) con todas las rutas y su vista asociada
   rutas: {
     home: __vitePreload(() => import("./homeVista-Qnrlg2_z.js"), true ? [] : void 0, import.meta.url),
-    adminVista: __vitePreload(() => import("./adminVista-DmzDlI3f.js"), true ? __vite__mapDeps([0,1]) : void 0, import.meta.url),
+    adminVista: __vitePreload(() => import("./adminVista-CUUdS8eJ.js"), true ? __vite__mapDeps([0,1]) : void 0, import.meta.url),
     detalleProyecto: __vitePreload(() => import("./detalleProyectoVista-BYYtikjw.js"), true ? __vite__mapDeps([2,1]) : void 0, import.meta.url),
     editarProyecto: __vitePreload(() => import("./editarProyectoVista-z1MvyiR9.js"), true ? __vite__mapDeps([3,1]) : void 0, import.meta.url),
     nuevoProyecto: __vitePreload(() => import("./nuevoProyectoVista-CSNRodSp.js"), true ? [] : void 0, import.meta.url),
-    proyectos: __vitePreload(() => import("./proyectosVista-D97zvd4z.js"), true ? __vite__mapDeps([4,1]) : void 0, import.meta.url),
+    proyectos: __vitePreload(() => import("./proyectosVista-C3XdmE82.js"), true ? __vite__mapDeps([4,1]) : void 0, import.meta.url),
     registro: __vitePreload(() => import("./registroVista-C1p-xuTQ.js"), true ? [] : void 0, import.meta.url),
-    login: __vitePreload(() => import("./loginVista-YB2FHD9e.js"), true ? __vite__mapDeps([5,1]) : void 0, import.meta.url),
+    login: __vitePreload(() => import("./loginVista-D6Art7B2.js"), true ? __vite__mapDeps([5,1]) : void 0, import.meta.url),
     404: __vitePreload(() => import("./404-CRMuSiQ6.js"), true ? [] : void 0, import.meta.url)
   },
   // Método que obtiene la ruta del navegador
