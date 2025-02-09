@@ -1,5 +1,6 @@
-import { proyectos } from "../bd/datosPrueba";
 import { ls } from "../componentes/funciones";
+import { Proyecto } from "../bd/proyecto";
+import { User } from "../bd/user";
 
 export default {
   // html
@@ -33,7 +34,7 @@ export default {
     <div class="row">
       <div class="col-12 col-sm-4 mb-3">
       <!-- Boton para subir proyectos -->
-        <a id="botonSubirProyecto" href="#/proyectoNuevo" class="btn btn-primary w-100 router-link">Subir proyecto</a>
+        <a id="botonSubirProyecto" href="#/nuevoProyecto" class="btn btn-primary w-100 router-link">Subir proyecto</a>
       </div>
       <div class="d-flex col-12 col-sm-8 mb-3">
         <!-- Botones para alternar entre vista de tabla o de tarjetas -->
@@ -106,14 +107,32 @@ export default {
   </div>
 </div>
   `,
-  script: () => {
+  script: async () => {
     // **** AQUI DEBEMOS CAPTURAR LOS PROYECTOS DE LA BASE DE DATOS ****
-    // Definimos que por defecto se muestran 'mis proyectos'
-    let misProyectos = false;
-    const usuario = ls.getUsuario();
 
     // Capturamos proyectos y guardamos en variable para poder ser filtrada
-    const datos = proyectos;
+    const datosBd = await Proyecto.getAll();
+    console.log("datos", datosBd);
+    const user = await User.getUser();
+    const userId = user.id;
+    console.log("userId", userId);
+    const datos = datosBd.map((dato) => {
+      const fecha = dato.created_at;
+      const nuevaFecha = fecha.split("T")[0];
+      const fechaFormateada = `${nuevaFecha.split("-")[2]}/${
+        nuevaFecha.split("-")[1]
+      }/${nuevaFecha.split("-")[0]}`;
+      const datoFormateado = {
+        ...dato,
+        created_at: fechaFormateada,
+      };
+      return datoFormateado;
+    });
+
+    let misProyectos = false;
+    // Capturamos los datos del usuario logueado
+    const usuario = ls.getUsuario();
+    console.log(usuario);
 
     // ####################################################################
     // *** FUNCIÓN PARA PINTAR TABLA A PARTIR DE ARRAY datos ***
@@ -122,8 +141,8 @@ export default {
     const pintaTabla = (proyectosFiltrados) => {
       // Si tenemos seleccionada la opción 'mis proyectos' filtramos los proyectos por user_id
       if (misProyectos) {
-        proyectosFiltrados = datos.filter(
-          (proyecto) => proyecto.user_id === usuario.user_id
+        proyectosFiltrados = proyectosFiltrados.filter(
+          (proyecto) => proyecto.user_id === userId
         );
       }
 
@@ -132,9 +151,10 @@ export default {
       proyectosFiltrados.forEach((proyecto) => {
         // Generamos botones dependiendo de si el proyecto ha sido creado por el usuario logueado
         let botones = "";
-        if (usuario.user_id === proyecto.user_id) {
+        if (userId === proyecto.user_id) {
           botones = `
           <td><a
+            href="#/editarProyecto/${proyecto.id}"
             data-id = ${proyecto.id}
             class="botonAdmin botonEditar d-none d-sm-inline btn btn-sm btn-outline-primary bi bi-pencil"
           ></a></td>
@@ -148,12 +168,12 @@ export default {
         tbodyProyectos +=
           // html
           `
-        <tr data-id="${proyecto.id}" class="verDetalle">
+        <tr data-id=${proyecto.id} class="verDetalle">
           <td>
             <div class="containerImagen">
               <img 
                 class="verDetalle"
-                data-id="${proyecto.id}"
+                data-id=${proyecto.id}
                 width="200px" 
                 src=${proyecto.imagen || "images/imagenVacia.png"} 
                 alt="imagen proyecto" />
@@ -188,10 +208,10 @@ export default {
     const pintaTarjetas = (proyectosFiltrados) => {
       // Si tenemos seleccionada la opción 'mis proyectos' filtramos los proyectos por user_id
       if (misProyectos) {
-        proyectosFiltrados = datos.filter(
-          (proyecto) => proyecto.user_id === usuario.user_id
+        proyectosFiltrados = proyectosFiltrados.filter(
+          (proyecto) => proyecto.user_id === userId
         );
-        console.log(proyectos);
+        console.log("proyectosUserId", proyectosFiltrados);
       }
       let tarjetasProyectos = "";
       // Iteramos para cada proyecto del array 'proyectosFiltrados'
@@ -201,7 +221,7 @@ export default {
         if (usuario.user_id === proyecto.user_id) {
           botones = `
           <a
-            href="#/proyectoEditar/${proyecto.id}"
+            href="#/editarProyecto/${proyecto.id}"
             data-id = ${proyecto.id}
             class="botonAdmin botonEditar d-none d-sm-inline btn btn-sm btn-outline-primary bi bi-pencil"
           ></a>
@@ -400,7 +420,7 @@ export default {
           console.log("Editar proyecto " + id);
 
           // Cargamos la vista para editar proyecto pasandole como parámetro el id
-          window.location = `#/editarProyecto/${id}`;
+          window.location = `#/proyectoEditar/${id}`;
         } else if (boton.classList.contains("botonBorrar")) {
           // Si se trata de borrar
           alert("Borrar proyecto " + id);
@@ -408,6 +428,7 @@ export default {
           // *** AQUÍ VA LA FUNCIÓN QUE BORRA DE LA BASE DE DATOS EL PROYECTO CORRESPONDIENTE AL ID ***
         }
       }
+
       // Visualizar detalle del proyecto si click sobre tr de vista tabla
       if (event.target.tagName === "TD") {
         console.log("clic en td");
@@ -421,11 +442,9 @@ export default {
       }
     });
 
-    // ####################################################################
-    // Mostrar/ocultar botón 'subir proyecto'
+    // ####################################################################    // Mostrar/ocultar botón 'subir proyecto'
     // ####################################################################
 
-    // Capturamos los datos del usuario logueado
     // Ocultamos el botón de subir proyecto si el rol es registrado
     if (usuario.rol === "registrado") {
       document.querySelector("#botonSubirProyecto").classList.add("disabled");
