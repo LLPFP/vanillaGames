@@ -13,6 +13,7 @@ export class Proyecto {
     imagen = null, // URL de la imagen del proyecto
     enlace = null, // URL del enlace del proyecto
     repositorio = null, // URL del repositorio del proyecto
+    autor = null, // Nombre del autor del proyecto
     estado = "activo", // Estado del proyecto (activo/inactivo)
   }) {
     // Asignación de valores a las propiedades del proyecto
@@ -24,6 +25,7 @@ export class Proyecto {
     this.imagen = imagen;
     this.enlace = enlace;
     this.repositorio = repositorio;
+    this.autor = autor;
     this.estado = estado;
   }
 

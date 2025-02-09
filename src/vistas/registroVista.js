@@ -1,3 +1,6 @@
+import { User } from "../bd/user";
+import { Perfil } from "../bd/perfil";
+
 export default {
   template: `
     <div class="container">
@@ -10,16 +13,16 @@ export default {
           >
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre:</label>
-              <input required id="nombre" type="text" class="form-control" />
+              <input required id="nombre" name="nombre" type="text" class="form-control" />
               <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
             </div>
             <div class="mb-3">
               <label for="apellidos" class="form-label">Apellidos:</label>
-              <input id="apellidos" type="text" class="form-control" />
+              <input id="apellidos" name="apellidos" type="text" class="form-control" />
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email:</label>
-              <input required id="email" type="email" class="form-control" />
+              <input required id="email" name="Email" type="email" class="form-control" />
               <div class="invalid-feedback">
                 Por favor, ingrese un email válido.
               </div>
@@ -28,7 +31,8 @@ export default {
               <label for="pass" class="form-label">Contraseña:</label>
               <input
                 required
-                id="pass"
+                id="password"
+                name="password"
                 type="password"
                 minlength="6"
                 class="form-control"
@@ -54,13 +58,40 @@ export default {
       Array.prototype.slice.call(forms).forEach(function (form) {
         form.addEventListener(
           "submit",
-          function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
+          async function (event) {
+            event.preventDefault();
 
-            form.classList.add("was-validated");
+            if (!form.checkValidity()) {
+              event.stopPropagation();
+              form.classList.add("was-validated");
+            } else {
+              try {
+                // Capturamos datos del formulario para el registro
+                const usuario = {
+                  email: form.email.value,
+                  password: form.password.value,
+                };
+                console.log("Formulario valido. Datos formulario: ", usuario);
+                const user = await User.create(usuario);
+                console.log("user creado", user);
+
+                // Capturamos datos del formulario para el perfil
+                const perfil = {
+                  user_id: user.id,
+                  nombre: form.nombre.value,
+                  apellidos: form.apellidos.value,
+                  estado: "Activo",
+                  rol: "registrado",
+                };
+                // Insertamos perfil en la base de datos
+                await Perfil.create(perfil);
+
+                alert("Usuario creado correctamente. Revisa tu email...");
+                window.location = "#/login";
+              } catch (error) {
+                alert("Error al crear usuario: " + error);
+              }
+            }
           },
           false
         );

@@ -1,4 +1,4 @@
-import { proyectos } from "../bd/datosPrueba";
+import { Proyecto } from "../bd/proyecto";
 
 export default {
   // html
@@ -41,43 +41,52 @@ export default {
   
 </div>
   `,
-  script: (id) => {
-    console.log("Vista proyectoDetalle cargada");
-    console.log(proyectos, id);
+  script: async (id) => {
+    try {
+      // Obtenemos el proyecto directamente de la base de datos
+      const proyecto = await Proyecto.getById(id);
 
-    // Simulamos la consulta a un proyecto por id filtrando de todos nuestros proyectos de prueba el que tiene el id que hemos recibido como parámetro
-    const proyectoArray = proyectos.filter((p) => p.id == id);
-    const proyecto = proyectoArray[0];
+      if (!proyecto) {
+        alert("Proyecto no encontrado");
+        window.location = "#/proyectos";
+        return;
+      }
 
-    // Modificamos el formato de la fecha quedandonos solo con el yy-mm-dd
-    const fecha = proyecto.created_at;
-    const fechaCorta = fecha.split("T")[0];
+      // Transformamos la fecha en un formato yy-mm-dd
+      const fecha = proyecto.created_at;
+      const fechaCorta = fecha.split("T")[0];
 
-    // Inyectamos los datos en la vista
-    document.querySelector("#imagenJuego").setAttribute("src", proyecto.imagen);
-    document.querySelector("#nombreJuego").innerHTML = proyecto.nombre;
-    document.querySelector("#descripcion").innerHTML = proyecto.descripcion;
-    document.querySelector("#estado").innerHTML = proyecto.estado;
-    document.querySelector("#fecha").innerHTML = fechaCorta;
-    document.querySelector("#enlace").innerHTML = proyecto.enlace;
-    document.querySelector("#repositorio").innerHTML = proyecto.repositorio;
+      // Inyectamos los datos en la vista
+      document
+        .querySelector("#imagenJuego")
+        .setAttribute("src", proyecto.imagen);
+      document.querySelector("#nombreJuego").innerHTML = proyecto.nombre;
+      document.querySelector("#descripcion").innerHTML = proyecto.descripcion;
+      document.querySelector("#estado").innerHTML = proyecto.estado;
+      document.querySelector("#fecha").innerHTML = fechaCorta;
+      document.querySelector("#enlace").innerHTML = proyecto.enlace;
+      document.querySelector("#repositorio").innerHTML = proyecto.repositorio;
 
-    // Añadimos el id en data-id al botón editar para que al detectar el click podamos llamar a la vista de edición pasandole el id en cuestión
-    document
-      .querySelector("#botonEditarDetalle")
-      .setAttribute("data-id", proyecto.id);
+      // Añadimos el id en data-id al botón editar
+      document
+        .querySelector("#botonEditarDetalle")
+        .setAttribute("data-id", proyecto.id);
 
-    // Boton volver atras
-    document.querySelector("#botonVolver").addEventListener("click", () => {
-      window.history.back();
-    });
-
-    // Boton editar
-    document
-      .querySelector("#botonEditarDetalle")
-      .addEventListener("click", (e) => {
-        const id = e.target.dataset.id;
-        window.location = `#/proyectoEditar/${id}`;
+      // Boton volver atras
+      document.querySelector("#botonVolver").addEventListener("click", () => {
+        window.history.back();
       });
+
+      // Boton editar
+      document
+        .querySelector("#botonEditarDetalle")
+        .addEventListener("click", (e) => {
+          const id = e.target.dataset.id;
+          window.location = `#/editarProyecto/${id}`;
+        });
+    } catch (error) {
+      alert("Error al cargar el proyecto: " + error.message);
+      window.location = "#/proyectos";
+    }
   },
 };

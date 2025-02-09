@@ -1,4 +1,5 @@
 import { proyectos } from "../bd/datosPrueba";
+import { Proyecto } from "../bd/proyecto"; // Import Proyecto for database interaction
 
 export default {
   // html
@@ -6,8 +7,8 @@ export default {
   <div class="container">
   <h1 class="mt-5">Edición de proyecto</h1>
   <div class="d-flex justify-content-end">
-    <bottom id="botonVolver" class="btn btn-outline-secondary mt-5 bi bi-arrow-bar-left router-link">
-      Volver</bottom
+    <button id="botonVolver" class="btn btn-outline-secondary mt-5 bi bi-arrow-bar-left router-link">
+      Volver</button
     >
   </div>
   <form novalidate id="formularioEditarProyecto" action="" class="form">
@@ -28,8 +29,9 @@ export default {
         </div>
       </div>
       <div class="col-12 col-md-8">
-        <!-- Formulario nuevo proyecto -->
-
+        <!-- ID proyecto oculto -->
+        <input type="hidden" id="proyectoId" />
+        
         <!-- Nombre proyecto -->
         <label class="form-label" for="nombre"><strong>Nombre: </strong></label>
         <input
@@ -109,74 +111,85 @@ export default {
   </form>
 </div>
   `,
-  script: (id) => {
-    // Simulamos la consulta a un proyecto por id
-    const proyectoArray = proyectos.filter((p) => p.id == id);
-    const proyecto = proyectoArray[0];
+  script: async (id) => {
+    try {
+      // Obtenemos el proyecto directamente de la base de datos
+      const proyecto = await Proyecto.getById(id);
 
-    // Transformamos la fecha en un formato yy-mm-dd
-    const fecha = proyecto.created_at;
-    const fechaCorta = fecha.split("T")[0];
-
-    // Insertamos los datos en el formulario
-    document.querySelector("#imagenJuego").setAttribute("src", proyecto.imagen);
-    document.querySelector("#urlImagen").value = proyecto.imagen;
-    document.querySelector("#nombreJuego").value = proyecto.nombre;
-    document.querySelector("#descripcion").value = proyecto.descripcion;
-    document.querySelector("#estado").value = proyecto.estado;
-    document.querySelector("#fecha").value = fechaCorta;
-    console.log(fechaCorta);
-    document.querySelector("#enlace").value = proyecto.enlace;
-    document.querySelector("#repositorio").value = proyecto.repositorio;
-
-    // Boton volver atras
-    document.querySelector("#botonVolver").addEventListener("click", () => {
-      window.history.back();
-    });
-
-    // Actualización de la imagen a partir de la urlImagen
-    // Capturamos input
-    const inputUrl = document.querySelector("#urlImagen");
-    // Detectamos cambios en su value
-    inputUrl.addEventListener("input", () => {
-      const imagen = document.querySelector("#imagenJuego");
-      // Actualizamos el atributo src y por lo tanto la imagen
-      imagen.setAttribute("src", inputUrl.value);
-    });
-
-    // Validación BOOTSTRAP
-    // Capturamos el formulario en una variable
-    const formulario = document.querySelector("#formularioEditarProyecto");
-    // Detectamos su evento submit (enviar)
-    formulario.addEventListener("submit", (event) => {
-      // Detenemos el evento enviar (submit)
-      event.preventDefault();
-      event.stopPropagation();
-      // Comprobamos si el formulario no valida
-      if (!formulario.checkValidity()) {
-        // Y añadimos la clase 'was-validate' para que se muestren los mensajes
-        formulario.classList.add("was-validated");
-      } else {
-        //* ** ENVIAMOS DATOS A LA BASE DE DATOS */
-        enviaDatos();
+      if (!proyecto) {
+        alert("Proyecto no encontrado");
+        window.location = "#/proyectos";
+        return;
       }
-    });
 
-    // Función para enviar datos a la base de datos
-    function enviaDatos() {
-      const proyectoEditado = {
-        imagen: document.querySelector("#urlImagen").value,
-        nombre: document.querySelector("#nombreJuego").value,
-        descripcion: document.querySelector("#descripcion").value,
-        estado: document.querySelector("#estado").value,
-        enlace: document.querySelector("#enlace").value,
-        repositorio: document.querySelector("#repositorio").value,
-      };
-      alert(`Enviando a la base de datos el objeto con id = ${proyecto.id}`);
-      console.log(
-        `Enviando a la base de datos el objeto con id = ${proyecto.id}`,
-        proyectoEditado
-      );
+      // Transformamos la fecha en un formato yy-mm-dd
+      const fecha = proyecto.created_at;
+      const fechaCorta = fecha.split("T")[0];
+
+      // Insertamos los datos en el formulario
+      document.querySelector("#proyectoId").value = proyecto.id;
+      document
+        .querySelector("#imagenJuego")
+        .setAttribute("src", proyecto.imagen);
+      document.querySelector("#urlImagen").value = proyecto.imagen;
+      document.querySelector("#nombreJuego").value = proyecto.nombre;
+      document.querySelector("#descripcion").value = proyecto.descripcion;
+      document.querySelector("#estado").value = proyecto.estado;
+      document.querySelector("#fecha").value = fechaCorta;
+      document.querySelector("#enlace").value = proyecto.enlace;
+      document.querySelector("#repositorio").value = proyecto.repositorio;
+
+      // Boton volver atras
+      document.querySelector("#botonVolver").addEventListener("click", () => {
+        window.history.back();
+      });
+
+      // Actualización de la imagen a partir de la urlImagen
+      const inputUrl = document.querySelector("#urlImagen");
+      inputUrl.addEventListener("input", () => {
+        const imagen = document.querySelector("#imagenJuego");
+        imagen.setAttribute("src", inputUrl.value);
+      });
+
+      // Validación BOOTSTRAP
+      const formulario = document.querySelector("#formularioEditarProyecto");
+      formulario.addEventListener("submit", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!formulario.checkValidity()) {
+          formulario.classList.add("was-validated");
+        } else {
+          enviaDatos();
+        }
+      });
+
+      // Función para enviar datos a la base de datos
+      async function enviaDatos() {
+        const id = document.querySelector("#proyectoId").value;
+        const proyectoEditado = {
+          imagen: document.querySelector("#urlImagen").value,
+          nombre: document.querySelector("#nombreJuego").value,
+          descripcion: document.querySelector("#descripcion").value,
+          estado: document.querySelector("#estado").value,
+          enlace: document.querySelector("#enlace").value,
+          repositorio: document.querySelector("#repositorio").value,
+        };
+        try {
+          await Proyecto.update(id, proyectoEditado);
+          alert("Proyecto actualizado con éxito");
+          console.log(
+            "Enviando a la base de datos el objeto con id =",
+            id,
+            proyectoEditado
+          );
+          window.location = "#/proyectos";
+        } catch (error) {
+          alert("Error al actualizar el proyecto: " + error.message);
+        }
+      }
+    } catch (error) {
+      alert("Error al cargar el proyecto: " + error.message);
+      window.location = "#/proyectos";
     }
   },
 };

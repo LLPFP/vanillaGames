@@ -1,4 +1,6 @@
 import { ls } from "./funciones";
+import { User } from "../bd/user";
+
 export const editarPerfil = {
   // html
   template: `
@@ -60,13 +62,13 @@ export const editarPerfil = {
                   <div class="invalid-feedback">El nombre es requerido</div>
                   <!-- Apellidos -->
                   <label for="apellidosPerfil" class="form-label">Apellidos:</label>
-                  <input id="apellidosPerfil" type="text" class="form-control" value = "${
+                  <input id="apellidosPerfil" type="text" class="form-control" value="${
                     ls.getUsuario().apellidos
                   }" />
 
                   <!-- Email -->
                   <label for="emailPerfil" class="form-label">Email:</label>
-                  <input required id="emailPerfil" type="email" class="form-control" value = "${
+                  <input required id="emailPerfil" type="email" class="form-control" value="${
                     ls.getUsuario().email
                   }" />
                   <div class="invalid-feedback">El formato no es correcto</div>
@@ -74,7 +76,6 @@ export const editarPerfil = {
                   <!-- Contraseña -->
                   <label for="passPerfil" class="form-label mt-3">Nueva contraseña:</label>
                   <input
-                    
                     minlength="6"
                     id="passPerfil"
                     type="password"
@@ -91,9 +92,9 @@ export const editarPerfil = {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               Cancelar
             </button>
-            <button id="enviarPerfilEditado" data-id = ${
+            <button id="enviarPerfilEditado" data-id="${
               ls.getUsuario().user_id
-            } type="submit" class="btn btn-primary">Guardar cambios</button>
+            }" type="submit" class="btn btn-primary">Guardar cambios</button>
           </div>
         </div>
       </div>
@@ -123,24 +124,28 @@ export const editarPerfil = {
 
     // Función para enviar datos a la base de datos
     function enviaDatos() {
+      const usuario = ls.getUsuario();
       const perfilEditado = {
+        user_id: usuario.user_id,
         avatar: document.querySelector("#avatar").value,
         nombre: document.querySelector("#nombrePerfil").value,
         apellidos: document.querySelector("#apellidosPerfil").value,
         email: document.querySelector("#emailPerfil").value,
-        contraseña: document.querySelector("#passPerfil").value,
+        contraseña:
+          document.querySelector("#passPerfil").value || usuario.contraseña,
       };
-      alert(
-        `Enviando a la base de datos el objeto con id = ${
-          ls.getUsuario().user_id
-        }`
+
+      // Actualizamos el usuario en la base de datos
+      User.update(perfilEditado);
+
+      // Actualizamos el localStorage
+      ls.setUsuario(perfilEditado);
+
+      // Cerramos el modal
+      const modal = bootstrap.Modal.getInstance(
+        document.querySelector("#modalEditarPerfil")
       );
-      console.log(
-        `Enviando a la base de datos el objeto con user_id = ${
-          ls.getUsuario().user_id
-        }`,
-        perfilEditado
-      );
+      modal.hide();
     }
   },
 };
