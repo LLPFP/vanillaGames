@@ -1,12 +1,13 @@
-import { p as proyectos } from "./datosPrueba-BtcYjQH3.js";
+import { P as Proyecto } from "./proyecto-NcXo9rBF.js";
+import "./main-C9yVXgh-.js";
 const editarProyectoVista = {
   // html
   template: `
   <div class="container">
   <h1 class="mt-5">Edición de proyecto</h1>
   <div class="d-flex justify-content-end">
-    <bottom id="botonVolver" class="btn btn-outline-secondary mt-5 bi bi-arrow-bar-left router-link">
-      Volver</bottom
+    <button id="botonVolver" class="btn btn-outline-secondary mt-5 bi bi-arrow-bar-left router-link">
+      Volver</button
     >
   </div>
   <form novalidate id="formularioEditarProyecto" action="" class="form">
@@ -27,8 +28,9 @@ const editarProyectoVista = {
         </div>
       </div>
       <div class="col-12 col-md-8">
-        <!-- Formulario nuevo proyecto -->
-
+        <!-- ID proyecto oculto -->
+        <input type="hidden" id="proyectoId" />
+        
         <!-- Nombre proyecto -->
         <label class="form-label" for="nombre"><strong>Nombre: </strong></label>
         <input
@@ -108,52 +110,69 @@ const editarProyectoVista = {
   </form>
 </div>
   `,
-  script: (id) => {
-    const proyectoArray = proyectos.filter((p) => p.id == id);
-    const proyecto = proyectoArray[0];
-    const fecha = proyecto.created_at;
-    const fechaCorta = fecha.split("T")[0];
-    document.querySelector("#imagenJuego").setAttribute("src", proyecto.imagen);
-    document.querySelector("#urlImagen").value = proyecto.imagen;
-    document.querySelector("#nombreJuego").value = proyecto.nombre;
-    document.querySelector("#descripcion").value = proyecto.descripcion;
-    document.querySelector("#estado").value = proyecto.estado;
-    document.querySelector("#fecha").value = fechaCorta;
-    console.log(fechaCorta);
-    document.querySelector("#enlace").value = proyecto.enlace;
-    document.querySelector("#repositorio").value = proyecto.repositorio;
-    document.querySelector("#botonVolver").addEventListener("click", () => {
-      window.history.back();
-    });
-    const inputUrl = document.querySelector("#urlImagen");
-    inputUrl.addEventListener("input", () => {
-      const imagen = document.querySelector("#imagenJuego");
-      imagen.setAttribute("src", inputUrl.value);
-    });
-    const formulario = document.querySelector("#formularioEditarProyecto");
-    formulario.addEventListener("submit", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      if (!formulario.checkValidity()) {
-        formulario.classList.add("was-validated");
-      } else {
-        enviaDatos();
+  script: async (id) => {
+    try {
+      const proyecto = await Proyecto.getById(id);
+      if (!proyecto) {
+        alert("Proyecto no encontrado");
+        window.location = "#/proyectos";
+        return;
       }
-    });
-    function enviaDatos() {
-      const proyectoEditado = {
-        imagen: document.querySelector("#urlImagen").value,
-        nombre: document.querySelector("#nombreJuego").value,
-        descripcion: document.querySelector("#descripcion").value,
-        estado: document.querySelector("#estado").value,
-        enlace: document.querySelector("#enlace").value,
-        repositorio: document.querySelector("#repositorio").value
-      };
-      alert(`Enviando a la base de datos el objeto con id = ${proyecto.id}`);
-      console.log(
-        `Enviando a la base de datos el objeto con id = ${proyecto.id}`,
-        proyectoEditado
-      );
+      const fecha = proyecto.created_at;
+      const fechaCorta = fecha.split("T")[0];
+      document.querySelector("#proyectoId").value = proyecto.id;
+      document.querySelector("#imagenJuego").setAttribute("src", proyecto.imagen);
+      document.querySelector("#urlImagen").value = proyecto.imagen;
+      document.querySelector("#nombreJuego").value = proyecto.nombre;
+      document.querySelector("#descripcion").value = proyecto.descripcion;
+      document.querySelector("#estado").value = proyecto.estado;
+      document.querySelector("#fecha").value = fechaCorta;
+      document.querySelector("#enlace").value = proyecto.enlace;
+      document.querySelector("#repositorio").value = proyecto.repositorio;
+      document.querySelector("#botonVolver").addEventListener("click", () => {
+        window.history.back();
+      });
+      const inputUrl = document.querySelector("#urlImagen");
+      inputUrl.addEventListener("input", () => {
+        const imagen = document.querySelector("#imagenJuego");
+        imagen.setAttribute("src", inputUrl.value);
+      });
+      const formulario = document.querySelector("#formularioEditarProyecto");
+      formulario.addEventListener("submit", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!formulario.checkValidity()) {
+          formulario.classList.add("was-validated");
+        } else {
+          enviaDatos();
+        }
+      });
+      async function enviaDatos() {
+        const id2 = document.querySelector("#proyectoId").value;
+        const proyectoEditado = {
+          imagen: document.querySelector("#urlImagen").value,
+          nombre: document.querySelector("#nombreJuego").value,
+          descripcion: document.querySelector("#descripcion").value,
+          estado: document.querySelector("#estado").value,
+          enlace: document.querySelector("#enlace").value,
+          repositorio: document.querySelector("#repositorio").value
+        };
+        try {
+          await Proyecto.update(id2, proyectoEditado);
+          alert("Proyecto actualizado con éxito");
+          console.log(
+            "Enviando a la base de datos el objeto con id =",
+            id2,
+            proyectoEditado
+          );
+          window.location = "#/proyectos";
+        } catch (error) {
+          alert("Error al actualizar el proyecto: " + error.message);
+        }
+      }
+    } catch (error) {
+      alert("Error al cargar el proyecto: " + error.message);
+      window.location = "#/proyectos";
     }
   }
 };

@@ -1,3 +1,5 @@
+import { P as Perfil } from "./perfil-ClLmWtPE.js";
+import "./main-C9yVXgh-.js";
 const homeVista = {
   // html
   template: `
@@ -9,7 +11,12 @@ const homeVista = {
       <img src="images/logo.svg" alt="fpllefia" class="img-fluid" />
     </div>
   </div>
-    `
+    `,
+  script: async () => {
+    console.log("Vista home cargada");
+    const resultado = await Perfil.getAll();
+    console.log(resultado);
+  }
 };
 export {
   homeVista as default

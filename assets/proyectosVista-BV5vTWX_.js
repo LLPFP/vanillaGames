@@ -1,5 +1,5 @@
-import { p as proyectos } from "./datosPrueba-BtcYjQH3.js";
-import { l as ls } from "./main-DLi5zVOu.js";
+import { U as User, l as ls } from "./main-C9yVXgh-.js";
+import { P as Proyecto } from "./proyecto-NcXo9rBF.js";
 const proyectosVista = {
   // html
   template: `
@@ -32,7 +32,7 @@ const proyectosVista = {
     <div class="row">
       <div class="col-12 col-sm-4 mb-3">
       <!-- Boton para subir proyectos -->
-        <a id="botonSubirProyecto" href="#/proyectoNuevo" class="btn btn-primary w-100 router-link">Subir proyecto</a>
+        <a id="botonSubirProyecto" href="#/nuevoProyecto" class="btn btn-primary w-100 router-link">Subir proyecto</a>
       </div>
       <div class="d-flex col-12 col-sm-8 mb-3">
         <!-- Botones para alternar entre vista de tabla o de tarjetas -->
@@ -105,22 +105,38 @@ const proyectosVista = {
   </div>
 </div>
   `,
-  script: () => {
+  script: async () => {
+    const datosBd = await Proyecto.getAll();
+    console.log("datos", datosBd);
+    const user = await User.getUser();
+    const userId = user.id;
+    console.log("userId", userId);
+    const datos = datosBd.map((dato) => {
+      const fecha = dato.created_at;
+      const nuevaFecha = fecha.split("T")[0];
+      const fechaFormateada = `${nuevaFecha.split("-")[2]}/${nuevaFecha.split("-")[1]}/${nuevaFecha.split("-")[0]}`;
+      const datoFormateado = {
+        ...dato,
+        created_at: fechaFormateada
+      };
+      return datoFormateado;
+    });
     let misProyectos = false;
     const usuario = ls.getUsuario();
-    const datos = proyectos;
+    console.log(usuario);
     const pintaTabla = (proyectosFiltrados) => {
       if (misProyectos) {
-        proyectosFiltrados = datos.filter(
-          (proyecto) => proyecto.user_id === usuario.user_id
+        proyectosFiltrados = proyectosFiltrados.filter(
+          (proyecto) => proyecto.user_id === userId
         );
       }
       let tbodyProyectos = "";
       proyectosFiltrados.forEach((proyecto) => {
         let botones = "";
-        if (usuario.user_id === proyecto.user_id) {
+        if (userId === proyecto.user_id) {
           botones = `
           <td><a
+            href="#/editarProyecto/${proyecto.id}"
             data-id = ${proyecto.id}
             class="botonAdmin botonEditar d-none d-sm-inline btn btn-sm btn-outline-primary bi bi-pencil"
           ></a></td>
@@ -132,12 +148,12 @@ const proyectosVista = {
         }
         tbodyProyectos += // html
         `
-        <tr data-id="${proyecto.id}" class="verDetalle">
+        <tr data-id=${proyecto.id} class="verDetalle">
           <td>
             <div class="containerImagen">
               <img 
                 class="verDetalle"
-                data-id="${proyecto.id}"
+                data-id=${proyecto.id}
                 width="200px" 
                 src=${proyecto.imagen || "images/imagenVacia.png"} 
                 alt="imagen proyecto" />
@@ -161,10 +177,10 @@ const proyectosVista = {
     };
     const pintaTarjetas = (proyectosFiltrados) => {
       if (misProyectos) {
-        proyectosFiltrados = datos.filter(
-          (proyecto) => proyecto.user_id === usuario.user_id
+        proyectosFiltrados = proyectosFiltrados.filter(
+          (proyecto) => proyecto.user_id === userId
         );
-        console.log(proyectos);
+        console.log("proyectosUserId", proyectosFiltrados);
       }
       let tarjetasProyectos = "";
       proyectosFiltrados.forEach((proyecto) => {
@@ -172,7 +188,7 @@ const proyectosVista = {
         if (usuario.user_id === proyecto.user_id) {
           botones = `
           <a
-            href="#/proyectoEditar/${proyecto.id}"
+            href="#/editarProyecto/${proyecto.id}"
             data-id = ${proyecto.id}
             class="botonAdmin botonEditar d-none d-sm-inline btn btn-sm btn-outline-primary bi bi-pencil"
           ></a>
@@ -278,7 +294,7 @@ const proyectosVista = {
         const id2 = boton.dataset.id;
         if (boton.classList.contains("botonEditar")) {
           console.log("Editar proyecto " + id2);
-          window.location = `#/editarProyecto/${id2}`;
+          window.location = `#/proyectoEditar/${id2}`;
         } else if (boton.classList.contains("botonBorrar")) {
           alert("Borrar proyecto " + id2);
         }
