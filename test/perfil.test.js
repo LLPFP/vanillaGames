@@ -68,6 +68,7 @@ describe("************** Perfil: Crearemos 4 usuarios con diferentes rols. El ú
       const perfilDevuelto = {
         user_id: null,
         nombre: "Iban",
+        email: "ibanez@gmail.com",
         apellidos: "A borrarme",
         estado: "pendiente",
         rol: "alumno",
